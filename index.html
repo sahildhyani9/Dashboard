@@ -51,14 +51,20 @@
                             <label>Month:</label>
                             <select id="monthFilter">
                             <option value="all">All</option>
-                            <option value="January">January</option>
-                            <option value="February">February</option>
-                            <option value="March">March</option>
-                            <option value="April">April</option>
+                            <option value="Jan">January</option>
+                            <option value="Feb">February</option>
+                            <option value="Mar">March</option>
+                            <option value="Apr">April</option>
                             <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
+                            <option value="Jun">June</option>
+                            <option value="Jul">July</option>
+                            <option value="Aug">August</option>
+                            <option value="Sep">September</option>
+                            <option value="Oct">October</option>
+                            <option value="Nov">November</option>
+                            <option value="Dec">December</option>
                             </select>
+                            
                         </div>
                     </div>
                     <!-- End Filters -->                                
@@ -310,7 +316,7 @@
                         <!-- END RENT AND GROCERY -->
                         <script>
                             const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-                            const months = ["January", "February", "March", "April", "May", "June", "July"];
+                            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                             const dataMap = {};
 
                             function renderCard(topic) 
@@ -719,7 +725,7 @@
                             (function () 
                             {
                                 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-                                const months = ["January", "February", "March", "April", "May", "June", "July"];
+                                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
                                 let sheetData = [];
 
@@ -874,7 +880,7 @@
                             (function () 
                             {
                                 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-                                const months = ["January", "February", "March", "April", "May", "June", "July"];
+                                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                                 const investedTopics = {
                                 "PPF": "ppf",
                                 "NPS": "nps",
@@ -1021,7 +1027,7 @@
                             (function () 
                             {
                                 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-                                const months = ["January", "February", "March", "April", "May", "June", "July"];
+                                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                                 const rechargeTopics = {
                                     "jio recharge home": "jio-home",
                                     "jio recharge personal": "jio-personal",
