@@ -419,7 +419,71 @@
                                 }
                             }
 
+                            function renderDinnerCard() 
+                            {
+                                const topicKey = "dinner";
+                                const values = dataMap[topicKey] || {};
+                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
 
+                                let dinnerTotal = 0;
+                                if (selectedMonth === "all") {
+                                    months.forEach(month => {
+                                        dinnerTotal += values[month] || 0;
+                                    });
+                                } else {
+                                    dinnerTotal = values[selectedMonth] || 0;
+                                }
+
+                                const dinnerValueElem = document.getElementById("dinner-total");
+                                if (dinnerValueElem) {
+                                    dinnerValueElem.innerText = `₹${dinnerTotal.toFixed(2)}`;
+                                }
+                            }
+
+                            function renderOutsideDinnerCard() 
+                            {
+                                const topicKey = "dinneroutside";
+                                const values = dataMap[topicKey] || {};
+                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                let dinneroutsideTotal = 0;
+                                if (selectedMonth === "all") {
+                                    months.forEach(month => {
+                                        dinneroutsideTotal += values[month] || 0;
+                                    });
+                                } else {
+                                    dinneroutsideTotal = values[selectedMonth] || 0;
+                                }
+
+                                const dinneroutsideValueElem = document.getElementById("dinneroutside-total");
+                                if (dinneroutsideValueElem) {
+                                    dinneroutsideValueElem.innerText = `₹${dinneroutsideTotal.toFixed(2)}`;
+                                }
+                            }
+
+                            function renderCarCard() 
+                            {
+                                const topicKey = "car";
+                                const values = dataMap[topicKey] || {};
+                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                let carTotal = 0;
+                                if (selectedMonth === "all") {
+                                    months.forEach(month => {
+                                        carTotal += values[month] || 0;
+                                    });
+                                } else {
+                                    carTotal = values[selectedMonth] || 0;
+                                }
+
+                                const carValueElem = document.getElementById("car-total");
+                                if (carValueElem) {
+                                    carValueElem.innerText = `₹${carTotal.toFixed(2)}`;
+                                }
+                            }
+
+
+                            // Render all cards
                             function renderAllCards() 
                             {
                                 document.querySelectorAll('[data-topic]').forEach(card => {
@@ -436,6 +500,8 @@
 
                                 renderTravelCard(); // 👈 Add this here
                                 renderGiftCard(); // 👈 Add this here
+                                renderDinnerCard(); // 👈 Add this here
+                                renderOutsideDinnerCard(); // 👈 Add this here
                             }
 
 
@@ -1112,6 +1178,62 @@
 
 
                     </div>
+
+
+
+
+                    <div class="row">                    
+                        <!-- Dinner Bill Widget
+                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
+                            <div class="card flex-row align-items-center p-3 p-md-4">
+                                <div class="icon icon-lg bg-soft-primary rounded-circle mr-3">
+                                    <i class="gd-bar-chart icon-text d-inline-block text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="lh-1 mb-1" id="dinner-total">₹0.00</h4>
+                                    <h6 class="mb-0">Total Dinner Bill</h6>
+                                </div>
+                                <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
+                            </div>                    
+                        </div>
+                        <!-- End Dinner Bill Widget -->
+
+                        <!-- Outside Dinner Total Widget -->    
+                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                        
+                            <div class="card flex-row align-items-center p-3 p-md-4">
+                                <div class="icon icon-lg bg-soft-secondary rounded-circle mr-3">
+                                    <i class="gd-wallet icon-text d-inline-block text-secondary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="lh-1 mb-1" id="dinneroutside-total">₹0.00</h4>
+                                    <h6 class="mb-0">Total Outside Dinner Expenses</h6>
+                                </div>
+                                <i class="gd-arrow-down icon-text d-flex text-danger ml-auto"></i>
+                            </div>                        
+                        </div>
+                        <!-- Education Total Widget -->
+
+                        <!-- Total Car Widget 
+                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
+                            <div class="card flex-row align-items-center p-3 p-md-4">
+                                <div class="icon icon-lg bg-soft-warning rounded-circle mr-3">
+                                    <i class="gd-money icon-text d-inline-block text-warning"></i>
+                                </div>
+                                <div>
+                                    <h4 class="lh-1 mb-1" id="car-total">₹0.00</h4>
+                                    <h6 class="mb-0">Total Car Expenses</h6>
+                                </div>
+                                <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
+                            </div>
+                        </div>
+                        <!-- Total Car Widget -->
+
+                    </div>    
+
+
+
+
+
 
                 </div>    
             </div>
