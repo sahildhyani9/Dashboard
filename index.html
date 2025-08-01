@@ -326,32 +326,46 @@
                                 const selectedMonth = document.getElementById("monthFilter")?.value || "all";
 
                                 const dataPoints = selectedMonth === "all"
-                                ? months.map(m => values[m] || 0)
-                                : [values[selectedMonth] || 0];
+                                    ? months.map(m => values[m] || 0)
+                                    : [values[selectedMonth] || 0];
                                 const chartLabels = selectedMonth === "all" ? months : [selectedMonth];
 
                                 const total = dataPoints.reduce((a, b) => a + b, 0).toFixed(2);
-                                const latest = dataPoints[dataPoints.length - 1] || 0;
-                                const prev = dataPoints.length > 1 ? dataPoints[dataPoints.length - 2] : 0;
+
+                                // Find last non-zero value and its month
+                              let latestIdx = -1;
+                                for (let i = dataPoints.length - 1; i >= 0; i--) {
+                                const val = values[chartLabels[i]];
+                                if (val !== "" && val != null && !isNaN(val) && parseFloat(val) !== 0) {
+                                    latestIdx = i;
+                                    break;
+                                }
+                                }
+
+                                const latest = latestIdx >= 0 ? dataPoints[latestIdx] : 0;
+                                const latestMonth = latestIdx >= 0 ? chartLabels[latestIdx] : "N/A";
+                                const prev = latestIdx > 0 ? dataPoints[latestIdx - 1] : 0;
+
                                 const diff = (latest - prev).toFixed(2);
                                 const pct = prev !== 0 ? ((diff / prev) * 100).toFixed(2) : 0;
 
                                 // Update values in UI
                                 document.getElementById(`${topicKey}-total-value`).innerText = `₹${total}`;
                                 document.getElementById(`${topicKey}-monthly-change`).innerHTML =
-                                `${diff >= 0 ? '+' : ''}₹${diff} <span class="text-success mx-1">${pct >= 0 ? '+' : ''}${pct}%</span> This Month`;
+                                `₹${latest.toFixed(2)} <span class="text-${pct >= 0 ? 'success' : 'danger'} mx-1">${pct >= 0 ? '+' : ''}${pct}%</span> ${latestMonth}`;
+
 
                                 new Chartist.Line(`#${topicKey}-chart`, {
-                                labels: chartLabels,
-                                series: [dataPoints]
+                                    labels: chartLabels,
+                                    series: [dataPoints]
                                 }, {
-                                showPoint: true,
-                                showArea: false,
-                                lineSmooth: false,
-                                axisX: { showGrid: false, showLabel: true },
-                                axisY: { onlyInteger: true },
-                                chartPadding: { top: 10, right: 20, bottom: 10, left: 10 },
-                                plugins: [Chartist.plugins.tooltip()]
+                                    showPoint: true,
+                                    showArea: false,
+                                    lineSmooth: false,
+                                    axisX: { showGrid: false, showLabel: true },
+                                    axisY: { onlyInteger: true },
+                                    chartPadding: { top: 10, right: 20, bottom: 10, left: 10 },
+                                    plugins: [Chartist.plugins.tooltip()]
                                 });
                             }
 
