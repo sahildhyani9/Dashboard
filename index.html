@@ -51,6 +51,29 @@
                     <!-- Filters -->
                     <div class="dropdown ml-auto">                   
                         <div class="filters">
+                            
+                            
+                            <label>Dashboard:</label>
+                            <select id="dashboardFilter">
+                           <option value="index.html">Sahil</option>
+  <option value="pavi.html">Pavi</option>
+  <option value="compiled.html">Compiled</option>
+                
+                            </select>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             <label>Year:</label>
                             <select id="yearFilter">
                             <option value="all">All</option>
@@ -72,6 +95,12 @@
                             <option value="Nov">November</option>
                             <option value="Dec">December</option>
                             </select>
+
+
+
+
+
+
                             
                         </div>
                     </div>
@@ -80,13 +109,14 @@
             </nav>
             <style>
                 .filters {
-                display: flex;
+                flex-direction: column;
                 align-items: center;
                 gap: 16px;
                 background-color: #f8f9fa;
                 padding: 12px 20px;
                 border-radius: 6px;
                 font-size: 16px;
+                flex-direction: row; /* <-- horizontal by default */
                 }
 
                 .filters label {
@@ -111,188 +141,44 @@
                 border-color: #007bff;
                 box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
                 }
+                
+                @media (max-width: 768px) {
+  .filters {
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 10px;
+  }
 
+  .filters .form-group {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
+  .filters .form-group label {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
 
-
-
-
-
-
-
-
+  .filters .form-control {
+    width: 100%;
+  }
+}
+}
             </style>
 
-            <!-- Add this inside your <header> after the filters, before </header> -->
-            <button id="sidebarToggle" class="sidebar-toggle-btn" aria-label="Toggle sidebar">
-                &#9776;
-            </button>
 
-            <style>
-            /* Hamburger button styles */
-            .sidebar-toggle-btn {
-                display: none;
-                position: absolute;
-                left: 16px;
-                top: 16px;
-                z-index: 10001;
-                background: #fff;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                font-size: 28px;
-                padding: 4px 12px;
-                cursor: pointer;
-            }
 
-            /* Show hamburger only on mobile */
-            @media (max-width: 768px) {
-                .sidebar-toggle-btn {
-                    display: block;
-                }
-                #sidebar {
-                    display: none;
-                    position: fixed;
-                    left: 0;
-                    top: 0;
-                    height: 100vh;
-                    width: 80vw;
-                    background: #fff;
-                    z-index: 9999;
-                    box-shadow: 2px 0 8px rgba(0,0,0,0.08);
-                    overflow-y: auto;
-                    transition: transform 0.3s ease;
-                    transform: translateX(-100%);
-                }
-                #sidebar.active {
-                    display: block;
-                    transform: translateX(0);
-                }
-                .main {
-                    margin-left: 0 !important;
-                }
-                /* Optional: dark overlay when sidebar is open */
-                #sidebar.active ~ .sidebar-overlay {
-                    display: block;
-                }
-                .sidebar-overlay {
-                    display: none;
-                    position: fixed;
-                    top: 0; left: 0; right: 0; bottom: 0;
-                    background: rgba(0,0,0,0.2);
-                    z-index: 9998;
-                }
-            }
-            </style>
 
         </header>
         <!-- End Header -->
 
         <main class="main">
-            <!-- Sidebar Nav -->
-            <aside id="sidebar" class="js-custom-scroll side-nav">
-                <ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
-                    <!-- Title -->
-                    <li class="sidebar-heading h6">Dashboard</li>
-                    <!-- End Title -->
-                    <!-- Divider -->
-                    <!-- Dashboard -->
-                    <li class="side-nav-menu-item active">
-                        <a class="side-nav-menu-link media align-items-center" href="index.html">
-                        <span class="side-nav-menu-icon d-flex mr-3">
-                        <i class="gd-dashboard"></i>
-                        </span>
-                        <span class="side-nav-fadeout-on-closed media-body">Sahil</span>                        
-                        </a>
-                        <a class="side-nav-menu-link media align-items-center" href="pavi.html">
-                            <span class="side-nav-menu-icon d-flex mr-3">
-                            <i class="gd-dashboard"></i>
-                            </span>
-                            <span class="side-nav-fadeout-on-closed media-body">Pavi</span>                        
-                        </a>
-                        <a class="side-nav-menu-link media align-items-center" href="investments.html">
-                            <span class="side-nav-menu-icon d-flex mr-3">
-                            <i class="gd-dashboard"></i>
-                            </span>
-                            <span class="side-nav-fadeout-on-closed media-body">Investments</span>                        
-                        </a>
-                    
-                        
-<style
-
-
-/* Highlight active sidebar item */
-.side-nav-menu-item.active > .side-nav-menu-link {
-    background: #e9ecef;
-    color: #007bff !important;
-    font-weight: bold;
-    border-radius: 6px;
-}
-
-/* Make sidebar links more visible on mobile */
-@media (max-width: 768px) {
-    #sidebar {
-        min-width: 100vw;
-        position: relative;
-        z-index: 10;
-    }
-    .side-nav-menu-link {
-        font-size: 18px;
-        padding: 16px 20px;
-    }
-}
-/* Ensure sidebar is visible and overlays content on mobile */
-@media (max-width: 768px) {
-    #sidebar {
-        display: block !important;
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100vh;
-        width: 80vw;
-        background: #fff;
-        z-index: 9999;
-        box-shadow: 2px 0 8px rgba(0,0,0,0.08);
-        overflow-y: auto;
-    }
-    .main {
-        margin-left: 80vw;
-    }
-}
-
-
-
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    </li>
-                    <!-- End Dashboard -->       
-                </ul>
-            </aside>
-            <!-- End Sidebar Nav -->
+        
 
             <div class="content">
                 <div class="py-4 px-3 px-md-4">
-                    <div class="mb-3 mb-md-4 d-flex justify-content-between">
-                        <div class="h3 mb-0">Dashboards</div>
-                    </div>
+                  
 
                     <div class="row">
                         <!-- RENT -->
@@ -1175,7 +1061,7 @@
                                 download: true,
                                 header: true,
                                 complete: function (results) {
-                                sheetData = results.data.filter(row => row["Topics"]?.trim());
+                                sheetData = results.data.filter row => row["Topics"]?.trim());
                                 updateInvestedFromFilters();
                                 }
                                 });
@@ -1397,22 +1283,19 @@
                 </div>    
             </div>
         </main>
-
-        <!-- Add this right after your <aside id="sidebar"> ... </aside> -->
-        <div class="sidebar-overlay"></div>
-
-        <!-- Add this before </body> -->
-<script>
-document.getElementById('sidebarToggle').onclick = function() {
-    document.getElementById('sidebar').classList.toggle('active');
-    document.querySelector('.sidebar-overlay').style.display =
-        document.getElementById('sidebar').classList.contains('active') ? 'block' : 'none';
-};
-document.querySelector('.sidebar-overlay').onclick = function() {
-    document.getElementById('sidebar').classList.remove('active');
-    this.style.display = 'none';
-};
-</script>
     </body>
 
 </html>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var dashboardFilter = document.getElementById('dashboardFilter');
+    if (dashboardFilter) {
+        dashboardFilter.addEventListener('change', function() {
+            var selected = dashboardFilter.value;
+            if (selected && selected !== window.location.pathname.split('/').pop()) {
+                window.location.href = selected;
+            }
+        });
+    }
+});
+</script>
