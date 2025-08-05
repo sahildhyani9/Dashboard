@@ -12,12 +12,9 @@
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="public/img/favicon.ico">
-
-
     
         <!-- Template -->
         <link rel="stylesheet" href="public/graindashboard/css/graindashboard.css">
-
 
         <!-- Chartist Core -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chartist@0.11.4/dist/chartist.min.css">
@@ -27,21 +24,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chartist-plugin-tooltips@0.0.17/dist/chartist-plugin-tooltip.css">
         <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-tooltips@0.0.17/dist/chartist-plugin-tooltip.min.js"></script>
 
-
         <!-- PapaParse -->
         <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-
-
-
-
-
-        
-
-
     </head>
-
-
 
     <body class="has-sidebar has-fixed-sidebar-and-header">
         <!-- Header -->
@@ -51,29 +37,6 @@
                     <!-- Filters -->
                     <div class="dropdown ml-auto">                   
                         <div class="filters">
-                            
-                            
-                            <label>Dashboard:</label>
-                            <select id="dashboardFilter">
-                           <option value="index.html">Sahil</option>
-  <option value="pavi.html">Pavi</option>
-  <option value="compiled.html">Compiled</option>
-                
-                            </select>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
                             <label>Year:</label>
                             <select id="yearFilter">
                             <option value="all">All</option>
@@ -94,1208 +57,1189 @@
                             <option value="Oct">October</option>
                             <option value="Nov">November</option>
                             <option value="Dec">December</option>
-                            </select>
-
-
-
-
-
-
-                            
+                            </select>                            
                         </div>
                     </div>
                     <!-- End Filters -->                                
                 </div>
+            
+                <style>
+                    .filters {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 16px;
+                    background-color: #f8f9fa;
+                    padding: 12px 20px;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    }
+
+                    .filters label {
+                    margin-bottom: 0;
+                    font-weight: 600;
+                    color: #333;
+                    font-size: 16px;
+                    }
+
+                    .filters select {
+                    height: 40px;
+                    padding: 8px 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    outline: none;
+                    font-size: 16px;
+                    min-width: 140px;
+                    background-color: #fff;
+                    }
+
+                    .filters select:focus {
+                    border-color: #007bff;
+                    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+                    }                
+                </style>
             </nav>
-            <style>
-                .filters {
-                flex-direction: column;
-                align-items: center;
-                gap: 16px;
-                background-color: #f8f9fa;
-                padding: 12px 20px;
-                border-radius: 6px;
-                font-size: 16px;
-                flex-direction: row; /* <-- horizontal by default */
-                }
-
-                .filters label {
-                margin-bottom: 0;
-                font-weight: 600;
-                color: #333;
-                font-size: 16px;
-                }
-
-                .filters select {
-                height: 40px;
-                padding: 8px 12px;
-                border: 1px solid #ccc;
-                border-radius: 6px;
-                outline: none;
-                font-size: 16px;
-                min-width: 140px;
-                background-color: #fff;
-                }
-
-                .filters select:focus {
-                border-color: #007bff;
-                box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
-                }
-                
-                @media (max-width: 768px) {
-  .filters {
-    align-items: flex-start;
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 10px;
-  }
-
-  .filters .form-group {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .filters .form-group label {
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-
-  .filters .form-control {
-    width: 100%;
-  }
-}
-}
-            </style>
-
-
-
-
         </header>
         <!-- End Header -->
 
-        <main class="main">
-        
+        <main class="main px-0">
+            <div class="container-fluid px-0">
+                <div class="row no-gutters">     
+                    <!-- Sidebar Nav -->
+                    <div class="col-12 col-md-3 col-xl-2 mb-3 mb-md-0 pl-0">
+                        <ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
+                            <!-- Title -->
+                            <li class="sidebar-heading h6">Dashboard</li>
 
-            <div class="content">
-                <div class="py-4 px-3 px-md-4">
-                  
+                            <!-- Navigation Items -->
+                            <li class="side-nav-menu-item active">
+                                <a class="side-nav-menu-link media align-items-center" href="index.html">
+                                    <span class="side-nav-menu-icon d-flex mr-3">
+                                        <i class="gd-dashboard"></i>
+                                    </span>
+                                    <span class="side-nav-fadeout-on-closed media-body">Sahil</span>                        
+                                </a>
+                                <a class="side-nav-menu-link media align-items-center" href="pavi.html">
+                                    <span class="side-nav-menu-icon d-flex mr-3">
+                                        <i class="gd-dashboard"></i>
+                                    </span>
+                                    <span class="side-nav-fadeout-on-closed media-body">Pavi</span>                        
+                                </a>
+                                <a class="side-nav-menu-link media align-items-center" href="investments.html">
+                                    <span class="side-nav-menu-icon d-flex mr-3">
+                                        <i class="gd-dashboard"></i>
+                                    </span>
+                                    <span class="side-nav-fadeout-on-closed media-body">Investments</span>                        
+                                </a>
+                            </li>
+                        </ul>
+                    </div>                
+                    <!-- End Sidebar Nav -->
 
-                    <div class="row">
-                        <!-- RENT -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="rent">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Rent</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="rent-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="rent-monthly-change" class="small text-muted mb-0">Calculating...</p>
-                                        </div>
-                                    </div>
-                                    <div id="rent-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
-                                </div>
+                    <div class="content">
+                        <div class="py-4 px-3 px-md-4">
+                            <div class="mb-3 mb-md-4 d-flex justify-content-between">
+                                <div class="h3 mb-0">Dashboards</div>
                             </div>
-                        </div>
 
-                        <!-- GROCERY -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="grocery">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Grocery</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="grocery-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="grocery-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                            <div class="row">
+                                <!-- RENT -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="rent">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Rent</h5>
                                         </div>
-                                    </div>
-                                </div>
-                                <div id="grocery-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
-                            </div>
-                        </div>                
-
-                        <!-- CAB -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="cab">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Cab</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="cab-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="cab-monthly-change" class="small text-muted mb-0">Calculating...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="cab-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
-                            </div>
-                        </div>
-
-                        <!-- Other -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="other">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Other</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="other-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="other-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="rent-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="rent-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                            <div id="rent-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="other-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
-                            </div>
-                        </div>                              
 
-                        <!-- Health -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="health">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Health</h5>
+                                <!-- GROCERY -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="grocery">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Grocery</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="grocery-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="grocery-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="grocery-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
+                                    </div>
+                                </div>                
+
+                                <!-- CAB -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="cab">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Cab</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="cab-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="cab-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="cab-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
+                                    </div>
                                 </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="health-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="health-monthly-change" class="small text-muted mb-0">Calculating...</p>
+
+                                <!-- Other -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="other">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Other</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="other-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="other-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="other-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
+                                    </div>
+                                </div>                              
+
+                                <!-- Health -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="health">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Health</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="health-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="health-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                            <div id="health-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                         </div>
                                     </div>
-                                    <div id="health-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Shopping -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="shopping">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Shopping</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="shopping-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="shopping-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                <!-- Shopping -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="shopping">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Shopping</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="shopping-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="shopping-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                            <div id="shopping-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                         </div>
                                     </div>
-                                    <div id="shopping-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- On Pavi -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="pavi">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">On Pavi</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="pavi-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="pavi-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                <!-- On Pavi -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="pavi">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">On Pavi</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="pavi-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="pavi-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                            <div id="pavi-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                         </div>
                                     </div>
-                                    <div id="pavi-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Petrol -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="petrol">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Petrol</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="petrol-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="petrol-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                <!-- Petrol -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="petrol">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Petrol</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="petrol-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="petrol-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                            <div id="petrol-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                         </div>
                                     </div>
-                                    <div id="petrol-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Clothes -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <div class="card h-100" data-topic="clothes">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Clothes</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
-                                        <div class="media-body">
-                                            <h4 id="clothes-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
-                                            <p id="clothes-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                <!-- Clothes -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                    <div class="card h-100" data-topic="clothes">
+                                        <div class="card-header d-flex">
+                                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Clothes</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
+                                                <div class="media-body">
+                                                    <h4 id="clothes-total-value" class="h3 lh-1 mb-2">₹0.00</h4>
+                                                    <p id="clothes-monthly-change" class="small text-muted mb-0">Calculating...</p>
+                                                </div>
+                                            </div>
+                                            <div id="clothes-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                         </div>
                                     </div>
-                                    <div id="clothes-chart" class="ct-chart js-area-chart chart--points-invisible position-relative" style="height: 200px;"></div>
                                 </div>
-                            </div>
-                        </div>
 
 
-                        <!-- END RENT AND GROCERY -->
-                        <script>
-                            const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-                            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                            const dataMap = {};
+                                <!-- END RENT AND GROCERY -->
+                                <script>
+                                    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
+                                    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                    const dataMap = {};
 
-                            function renderCard(topic) 
-                            {
-                                const topicKey = topic.toLowerCase();
-                                const values = dataMap[topicKey] || {};
-                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                const dataPoints = selectedMonth === "all"
-                                    ? months.map(m => values[m] || 0)
-                                    : [values[selectedMonth] || 0];
-                                const chartLabels = selectedMonth === "all" ? months : [selectedMonth];
-
-                                const total = dataPoints.reduce((a, b) => a + b, 0).toFixed(2);
-
-                                // Find last non-zero value and its month
-                              let latestIdx = -1;
-                                for (let i = dataPoints.length - 1; i >= 0; i--) {
-                                const val = values[chartLabels[i]];
-                                if (val !== "" && val != null && !isNaN(val) && parseFloat(val) !== 0) {
-                                    latestIdx = i;
-                                    break;
-                                }
-                                }
-
-                                const latest = latestIdx >= 0 ? dataPoints[latestIdx] : 0;
-                                const latestMonth = latestIdx >= 0 ? chartLabels[latestIdx] : "N/A";
-                                const prev = latestIdx > 0 ? dataPoints[latestIdx - 1] : 0;
-
-                                const diff = (latest - prev).toFixed(2);
-                                const pct = prev !== 0 ? ((diff / prev) * 100).toFixed(2) : 0;
-
-                                // Update values in UI
-                                document.getElementById(`${topicKey}-total-value`).innerText = `₹${total}`;
-                                document.getElementById(`${topicKey}-monthly-change`).innerHTML =
-                                `₹${latest.toFixed(2)} <span class="text-${pct >= 0 ? 'success' : 'danger'} mx-1">${pct >= 0 ? '+' : ''}${pct}%</span> ${latestMonth}`;
-
-
-                                new Chartist.Line(`#${topicKey}-chart`, {
-                                    labels: chartLabels,
-                                    series: [dataPoints]
-                                }, {
-                                    showPoint: true,
-                                    showArea: false,
-                                    lineSmooth: false,
-                                    axisX: { showGrid: false, showLabel: true },
-                                    axisY: { onlyInteger: true },
-                                    chartPadding: { top: 10, right: 20, bottom: 10, left: 10 },
-                                    plugins: [Chartist.plugins.tooltip()]
-                                });
-                            }
-
-
-                            const foodTopics = ["lunch", "dinner", "burger", "pizza","chowmein/momo/coffee"]; // add more later
-                            function calculateFoodTotal(dataMap, selectedMonth = "all") 
-                            {
-                                let total = 0;
-                                foodTopics.forEach(topic => 
-                                {
-                                    const values = dataMap[topic] || {};
-                                    if (selectedMonth === "all") 
+                                    function renderCard(topic) 
                                     {
-                                        months.forEach(month => {
-                                        total += values[month] || 0;
+                                        const topicKey = topic.toLowerCase();
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        const dataPoints = selectedMonth === "all"
+                                            ? months.map(m => values[m] || 0)
+                                            : [values[selectedMonth] || 0];
+                                        const chartLabels = selectedMonth === "all" ? months : [selectedMonth];
+
+                                        const total = dataPoints.reduce((a, b) => a + b, 0).toFixed(2);
+
+                                        // Find last non-zero value and its month
+                                    let latestIdx = -1;
+                                        for (let i = dataPoints.length - 1; i >= 0; i--) {
+                                        const val = values[chartLabels[i]];
+                                        if (val !== "" && val != null && !isNaN(val) && parseFloat(val) !== 0) {
+                                            latestIdx = i;
+                                            break;
+                                        }
+                                        }
+
+                                        const latest = latestIdx >= 0 ? dataPoints[latestIdx] : 0;
+                                        const latestMonth = latestIdx >= 0 ? chartLabels[latestIdx] : "N/A";
+                                        const prev = latestIdx > 0 ? dataPoints[latestIdx - 1] : 0;
+
+                                        const diff = (latest - prev).toFixed(2);
+                                        const pct = prev !== 0 ? ((diff / prev) * 100).toFixed(2) : 0;
+
+                                        // Update values in UI
+                                        document.getElementById(`${topicKey}-total-value`).innerText = `₹${total}`;
+                                        document.getElementById(`${topicKey}-monthly-change`).innerHTML =
+                                        `₹${latest.toFixed(2)} <span class="text-${pct >= 0 ? 'success' : 'danger'} mx-1">${pct >= 0 ? '+' : ''}${pct}%</span> ${latestMonth}`;
+
+
+                                        new Chartist.Line(`#${topicKey}-chart`, {
+                                            labels: chartLabels,
+                                            series: [dataPoints]
+                                        }, {
+                                            showPoint: true,
+                                            showArea: false,
+                                            lineSmooth: false,
+                                            axisX: { showGrid: false, showLabel: true },
+                                            axisY: { onlyInteger: true },
+                                            chartPadding: { top: 10, right: 20, bottom: 10, left: 10 },
+                                            plugins: [Chartist.plugins.tooltip()]
                                         });
-                                    } else {
-                                        total += values[selectedMonth] || 0;
                                     }
-                                });
-                                return total.toFixed(2);
-                            }
-
-                            
-                            function renderTravelCard() 
-                            {
-                                const topicKey = "travel";
-                                const values = dataMap[topicKey] || {};
-                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                let travelTotal = 0;
-                                if (selectedMonth === "all") {
-                                    months.forEach(month => {
-                                        travelTotal += values[month] || 0;
-                                    });
-                                } else {
-                                    travelTotal = values[selectedMonth] || 0;
-                                }
-
-                                const travelValueElem = document.getElementById("travel-total");
-                                if (travelValueElem) {
-                                    travelValueElem.innerText = `₹${travelTotal.toFixed(2)}`;
-                                }
-                            }
 
 
-                            function renderGiftCard() 
-                            {
-                                const topicKey = "gift";
-                                const values = dataMap[topicKey] || {};
-                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                let giftTotal = 0;
-                                if (selectedMonth === "all") {
-                                    months.forEach(month => {
-                                        giftTotal += values[month] || 0;
-                                    });
-                                } else {
-                                    giftTotal = values[selectedMonth] || 0;
-                                }
-
-                                const giftValueElem = document.getElementById("gift-total");
-                                if (giftValueElem) {
-                                    giftValueElem.innerText = `₹${giftTotal.toFixed(2)}`;
-                                }
-                            }
-
-                            function renderDinnerCard() 
-                            {
-                                const topicKey = "dinner";
-                                const values = dataMap[topicKey] || {};
-                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                let dinnerTotal = 0;
-                                if (selectedMonth === "all") {
-                                    months.forEach(month => {
-                                        dinnerTotal += values[month] || 0;
-                                    });
-                                } else {
-                                    dinnerTotal = values[selectedMonth] || 0;
-                                }
-
-                                const dinnerValueElem = document.getElementById("dinner-total");
-                                if (dinnerValueElem) {
-                                    dinnerValueElem.innerText = `₹${dinnerTotal.toFixed(2)}`;
-                                }
-                            }
-
-                            function renderOutsideDinnerCard() 
-                            {
-                                const topicKey = "dinneroutside";
-                                const values = dataMap[topicKey] || {};
-                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                let dinneroutsideTotal = 0;
-                                if (selectedMonth === "all") {
-                                    months.forEach(month => {
-                                        dinneroutsideTotal += values[month] || 0;
-                                    });
-                                } else {
-                                    dinneroutsideTotal = values[selectedMonth] || 0;
-                                }
-
-                                const dinneroutsideValueElem = document.getElementById("dinneroutside-total");
-                                if (dinneroutsideValueElem) {
-                                    dinneroutsideValueElem.innerText = `₹${dinneroutsideTotal.toFixed(2)}`;
-                                }
-                            }
-
-                            function renderCarCard() 
-                            {
-                                const topicKey = "car";
-                                const values = dataMap[topicKey] || {};
-                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                let carTotal = 0;
-                                if (selectedMonth === "all") {
-                                    months.forEach(month => {
-                                        carTotal += values[month] || 0;
-                                    });
-                                } else {
-                                    carTotal = values[selectedMonth] || 0;
-                                }
-
-                                const carValueElem = document.getElementById("car-total");
-                                if (carValueElem) {
-                                    carValueElem.innerText = `₹${carTotal.toFixed(2)}`;
-                                }
-                            }
-
-
-                            // Render all cards
-                            function renderAllCards() 
-                            {
-                                document.querySelectorAll('[data-topic]').forEach(card => {
-                                const topic = card.getAttribute("data-topic");
-                                renderCard(topic);
-                                });
-
-                                const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-                                const totalFoodSpend = calculateFoodTotal(dataMap, selectedMonth);
-                                const foodElem = document.getElementById("food-total");
-                                if (foodElem) {
-                                foodElem.innerText = `₹${totalFoodSpend}`;
-                                }
-
-                                renderTravelCard(); // 👈 Add this here
-                                renderGiftCard(); // 👈 Add this here
-                                renderDinnerCard(); // 👈 Add this here
-                                renderOutsideDinnerCard(); // 👈 Add this here
-                            }
-
-
-                            Papa.parse(sheetURL, 
-                            {
-                                download: true,
-                                header: true,
-                                complete: function (results)
-                                {
-                                    results.data.forEach(row => 
+                                    const foodTopics = ["lunch", "dinner", "burger", "pizza","chowmein/momo/coffee"]; // add more later
+                                    function calculateFoodTotal(dataMap, selectedMonth = "all") 
                                     {
-                                        const topic = row["Topics"]?.trim().toLowerCase();
-                                        if (!topic) return;
-                                        dataMap[topic] = {};
-                                        months.forEach(month => {dataMap[topic][month] = parseFloat((row[month] || "0").replace(/,/g, '')) || 0;});
+                                        let total = 0;
+                                        foodTopics.forEach(topic => 
+                                        {
+                                            const values = dataMap[topic] || {};
+                                            if (selectedMonth === "all") 
+                                            {
+                                                months.forEach(month => {
+                                                total += values[month] || 0;
+                                                });
+                                            } else {
+                                                total += values[selectedMonth] || 0;
+                                            }
+                                        });
+                                        return total.toFixed(2);
+                                    }
+
+                                    
+                                    function renderTravelCard() 
+                                    {
+                                        const topicKey = "travel";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let travelTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                travelTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            travelTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const travelValueElem = document.getElementById("travel-total");
+                                        if (travelValueElem) {
+                                            travelValueElem.innerText = `₹${travelTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+
+                                    function renderGiftCard() 
+                                    {
+                                        const topicKey = "gift";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let giftTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                giftTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            giftTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const giftValueElem = document.getElementById("gift-total");
+                                        if (giftValueElem) {
+                                            giftValueElem.innerText = `₹${giftTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderDinnerCard() 
+                                    {
+                                        const topicKey = "dinner";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let dinnerTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                dinnerTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            dinnerTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const dinnerValueElem = document.getElementById("dinner-total");
+                                        if (dinnerValueElem) {
+                                            dinnerValueElem.innerText = `₹${dinnerTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderOutsideDinnerCard() 
+                                    {
+                                        const topicKey = "dinneroutside";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let dinneroutsideTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                dinneroutsideTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            dinneroutsideTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const dinneroutsideValueElem = document.getElementById("dinneroutside-total");
+                                        if (dinneroutsideValueElem) {
+                                            dinneroutsideValueElem.innerText = `₹${dinneroutsideTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderCarCard() 
+                                    {
+                                        const topicKey = "car";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let carTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                carTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            carTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const carValueElem = document.getElementById("car-total");
+                                        if (carValueElem) {
+                                            carValueElem.innerText = `₹${carTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+
+                                    // Render all cards
+                                    function renderAllCards() 
+                                    {
+                                        document.querySelectorAll('[data-topic]').forEach(card => {
+                                        const topic = card.getAttribute("data-topic");
+                                        renderCard(topic);
+                                        });
+
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+                                        const totalFoodSpend = calculateFoodTotal(dataMap, selectedMonth);
+                                        const foodElem = document.getElementById("food-total");
+                                        if (foodElem) {
+                                        foodElem.innerText = `₹${totalFoodSpend}`;
+                                        }
+
+                                        renderTravelCard(); // 👈 Add this here
+                                        renderGiftCard(); // 👈 Add this here
+                                        renderDinnerCard(); // 👈 Add this here
+                                        renderOutsideDinnerCard(); // 👈 Add this here
+                                    }
+
+
+                                    Papa.parse(sheetURL, 
+                                    {
+                                        download: true,
+                                        header: true,
+                                        complete: function (results)
+                                        {
+                                            results.data.forEach(row => 
+                                            {
+                                                const topic = row["Topics"]?.trim().toLowerCase();
+                                                if (!topic) return;
+                                                dataMap[topic] = {};
+                                                months.forEach(month => {dataMap[topic][month] = parseFloat((row[month] || "0").replace(/,/g, '')) || 0;});
+                                            });
+                                            // Render all cards after data is loaded
+                                            renderAllCards();
+                                        }
                                     });
-                                    // Render all cards after data is loaded
-                                    renderAllCards();
-                                }
-                            });
 
 
 
-                            // Listen to filters
-                            const monthFilter = document.getElementById("monthFilter");
-                            if (monthFilter) {
-                            monthFilter.addEventListener("change", renderAllCards);
-                            }                        
-                        </script>
+                                    // Listen to filters
+                                    const monthFilter = document.getElementById("monthFilter");
+                                    if (monthFilter) {
+                                    monthFilter.addEventListener("change", renderAllCards);
+                                    }                        
+                                </script>
 
                         
-                        <!-- Food Total Widget -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
-                            <div class="card flex-row align-items-center p-3 p-md-4">
-                                <div class="icon icon-lg bg-soft-primary rounded-circle mr-3">
-                                    <i class="gd-bar-chart icon-text d-inline-block text-primary"></i>
+                                <!-- Food Total Widget -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-primary rounded-circle mr-3">
+                                            <i class="gd-bar-chart icon-text d-inline-block text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="food-total">₹0.00</h4>
+                                            <h6 class="mb-0">Total Food Spend</h6>
+                                        </div>
+                                        <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
+                                    </div>                    
                                 </div>
-                                <div>
-                                    <h4 class="lh-1 mb-1" id="food-total">₹0.00</h4>
-                                    <h6 class="mb-0">Total Food Spend</h6>
-                                </div>
-                                <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
-                            </div>                    
-                        </div>
-                        <!-- End Food Total Widget -->
+                                <!-- End Food Total Widget -->
 
 
-                        <!-- Travel Total Widget -->    
-                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                        
-                            <div class="card flex-row align-items-center p-3 p-md-4">
-                                <div class="icon icon-lg bg-soft-secondary rounded-circle mr-3">
-                                    <i class="gd-wallet icon-text d-inline-block text-secondary"></i>
+                                <!-- Travel Total Widget -->    
+                                <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                        
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-secondary rounded-circle mr-3">
+                                            <i class="gd-wallet icon-text d-inline-block text-secondary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="travel-total">₹0.00</h4>
+                                            <h6 class="mb-0">Total Travel</h6>
+                                        </div>
+                                        <i class="gd-arrow-down icon-text d-flex text-danger ml-auto"></i>
+                                    </div>                        
                                 </div>
-                                <div>
-                                    <h4 class="lh-1 mb-1" id="travel-total">₹0.00</h4>
-                                    <h6 class="mb-0">Total Travel</h6>
-                                </div>
-                                <i class="gd-arrow-down icon-text d-flex text-danger ml-auto"></i>
-                            </div>                        
-                        </div>
-                        <!-- Travel Total Widget -->
+                                <!-- Travel Total Widget -->
 
 
-                        <!-- Total Gift Widget -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
-                            <div class="card flex-row align-items-center p-3 p-md-4">
-                                <div class="icon icon-lg bg-soft-warning rounded-circle mr-3">
-                                    <i class="gd-money icon-text d-inline-block text-warning"></i>
+                                <!-- Total Gift Widget -->
+                                <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-warning rounded-circle mr-3">
+                                            <i class="gd-money icon-text d-inline-block text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="gift-total">₹0.00</h4>
+                                            <h6 class="mb-0">Total Gift</h6>
+                                        </div>
+                                        <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 class="lh-1 mb-1" id="gift-total">₹0.00</h4>
-                                    <h6 class="mb-0">Total Gift</h6>
-                                </div>
-                                <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
+                                <!-- Total Gift Widget -->
                             </div>
-                        </div>
-                        <!-- Total Gift Widget -->
-                    </div>
 
-                    <!-- Mutual Funds Tab Section -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card mb-3 mb-md-4">
-                                <div class="card-header border-bottom p-0">
-                                    <ul id="mfTabs" class="nav nav-v2 nav-primary nav-justified d-block d-xl-flex w-100" role="tablist">
-                                    <!-- Dynamic Tabs injected here -->
-                                    </ul>
-                                </div>
-                                <div id="mfContent" class="card-body tab-content"><!-- Dynamic Tab Content injected here --></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- jQuery (required for Bootstrap tabs) -->
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-                    <!-- Bootstrap JS (required for tab switching) -->
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> 
-
-                    <script>
-                        const mutualFunds = [
-                        "MF 2 - Axis Focused",
-                        "MF 3 - Canara Robeco S",
-                        "MF 4 - Axis Bluechip S",
-                        "MF 5 - Nippon"
-                        ];
-
-                        // Hardcoded corpus values per fund (₹)
-                        const corpusValues = {
-                        "MF 2 - Axis Focused": 179447,
-                        "MF 3 - Canara Robeco S": 92019,
-                        "MF 4 - Axis Bluechip S": 361567,
-                        "MF 5 - Nippon": 31070
-                        };
-
-                        const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-
-                        const tabsContainer = document.getElementById("mfTabs");
-                        const contentContainer = document.getElementById("mfContent");
-
-                        function slugify(text) {
-                        return text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-                        }
-
-                        function renderTab(name, index) 
-                        {
-                            const tabId = slugify(name);
-                            const activeClass = index === 0 ? 'active' : '';
-                            const tabHTML = `
-                            <li class="nav-item border-bottom border-xl-bottom-0 ${index !== 0 ? 'border-xl-left' : ''}">
-                            <a class="nav-link d-flex align-items-center py-2 px-3 p-xl-4 ${activeClass}" href="#${tabId}" role="tab" data-toggle="tab">
-                                <span>${name}</span>
-                                <small id="${tabId}-total" class="text-muted ml-auto">Loading...</small>
-                            </a>
-                            </li>`;
-                            tabsContainer.insertAdjacentHTML('beforeend', tabHTML);
-                        }
-
-                        function renderTabContent(name, index) 
-                        {
-                            const tabId = slugify(name);
-                            const activeClass = index === 0 ? 'show active' : '';
-                            const tabContentHTML = `
-                                <div class="tab-pane fade ${activeClass}" id="${tabId}" role="tabpanel">
-                                    <div class="row text-center">
-                                        <div class="col-6 col-md-4 mb-3 mb-md-0">
-                                            <div class="h3 mb-0" id="${tabId}-total-val">₹0.00</div>
-                                            <small class="text-muted">Total Investment</small>
+                            <!-- Mutual Funds Tab Section -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card mb-3 mb-md-4">
+                                        <div class="card-header border-bottom p-0">
+                                            <ul id="mfTabs" class="nav nav-v2 nav-primary nav-justified d-block d-xl-flex w-100" role="tablist">
+                                            <!-- Dynamic Tabs injected here -->
+                                            </ul>
                                         </div>
-                                        <div class="col-6 col-md-4 mb-3 mb-md-0 border-left">
-                                            <div class="h3 mb-0" id="${tabId}-corpus-val">₹0.00</div>
-                                            <small class="text-muted">Total Corpus</small>
-                                        </div>
-                                        <div class="col-12 col-md-4 border-left">
-                                            <div class="h3 mb-0" id="${tabId}-profit-val">0.00%</div>
-                                            <small class="text-muted">Net Profit (%)</small>
-                                        </div>
-                                    </div>
-                                    <div id="${tabId}-chart" class="ct-chart position-relative mt-4" style="height: 250px;"></div>
-                                </div>`;
-                            contentContainer.insertAdjacentHTML('beforeend', tabContentHTML);
-                        }
-
-                        function convertWideToLong(data) 
-                        {
-                            const months = Object.keys(data[0]).filter(k => k !== "Topics" && k !== "Total");
-                            const longData = [];
-                            data.forEach(row => {
-                            months.forEach(month => {
-                            const value = parseFloat((row[month] || "").replace(/,/g, ""));
-                            if (!isNaN(value)) 
-                            {
-                                longData.push({
-                                Topic: row["Topics"],
-                                Month: month,
-                                Total: value
-                                });
-                            }
-                            });
-                            });
-                            return longData;
-                        }
-
-                        function renderChart(tabId, labels, values) 
-                        {
-                            new Chartist.Line(`#${tabId}-chart`, {
-                            labels,
-                            series: [values]
-                            }, {
-                            low: 0,
-                            showArea: true,
-                            fullWidth: true,
-                            chartPadding: { right: 20 },
-                            lineSmooth: Chartist.Interpolation.simple(),
-                            axisX: { showGrid: false },
-                            axisY: { onlyInteger: true },
-                            plugins: [
-                            Chartist.plugins.tooltip({
-                                currency: "₹",
-                                class: 'chart-tooltip'
-                            })
-                            ]
-                            });
-                        }
-
-                        function initDashboard(data) 
-                        {
-                            const longData = convertWideToLong(data);
-
-                            mutualFunds.forEach((mf, index) => {
-                            const tabId = slugify(mf);
-                            renderTab(mf, index);
-                            renderTabContent(mf, index);
-                            });
-
-                            mutualFunds.forEach((mf, index) => {
-                            const tabId = slugify(mf);
-                            const mfRows = longData.filter(r => r.Topic.trim().toLowerCase() === mf.toLowerCase());
-                            if (mfRows.length === 0) return;
-
-                            const labels = mfRows.map(row => row.Month);
-                            const values = mfRows.map(row => parseFloat(row.Total) || 0);
-                            const total = values.reduce((a, b) => a + b, 0);
-                            const corpus = corpusValues[mf] || 0;
-                            const netProfit = corpus && total ? (((corpus - total) / total) * 100).toFixed(2) : "0.00";
-
-                            document.getElementById(`${tabId}-total-val`).textContent = `₹${total.toFixed(2)}`;
-                            document.getElementById(`${tabId}-corpus-val`).textContent = `₹${corpus.toFixed(2)}`;
-                            document.getElementById(`${tabId}-profit-val`).textContent = `${netProfit}%`;
-                            document.getElementById(`${tabId}-total`).textContent = `₹${total.toFixed(2)}`;
-
-                            // Initial chart render only for active tab
-                            if (index === 0) {
-                            renderChart(tabId, labels, values);
-                            }
-
-                            // Attach listener for others
-                            $(`a[href="#${tabId}"]`).on('shown.bs.tab', function () {
-                            renderChart(tabId, labels, values);
-                            });
-                            });
-                        }
-
-                        Papa.parse(csvUrl, {
-                        header: true,
-                        download: true,
-                        complete: function(results) {
-                            initDashboard(results.data);
-                        }
-                        });
-                    </script>
-                    
-                    <div class="row">
-                        <!-- balance overview -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <!-- Card -->
-                            <div class="card h-100">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Balance Overview</h5>
-                                </div>
-
-                                <div class="card-body p-0">
-                                    <div class="p-3 p-md-4">
-                                        <div id="balance-doughnut" class="ct-chart ct-golden-section" style="height: 160px;"></div>
-                                    </div>
-
-                                    <div class="border-top border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Expense</span>
-                                            <span class="ml-auto" id="balance-expense">₹0.00</span>
-                                        </div>
-                                        <i class="gd-arrow-up icon-text icon-text-xs d-flex text-danger ml-auto"></i>
-                                    </div>
-
-                                    <div class="media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Savings</span>
-                                            <span class="ml-auto" id="balance-savings">₹0.00</span>
-                                        </div>
-                                        <i class="gd-arrow-down icon-text icon-text-xs d-flex text-success ml-auto"></i>
+                                        <div id="mfContent" class="card-body tab-content"><!-- Dynamic Tab Content injected here --></div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Card -->
-                        </div>
+                            
+                                <!-- jQuery (required for Bootstrap tabs) -->
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-                        <script>
-                            (function () 
-                            {
-                                const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-                                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                <!-- Bootstrap JS (required for tab switching) -->
+                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> 
 
-                                let sheetData = [];
+                                <script>
+                                    const mutualFunds = [
+                                    "MF 2 - Axis Focused",
+                                    "MF 3 - Canara Robeco S",
+                                    "MF 4 - Axis Bluechip S",
+                                    "MF 5 - Nippon"
+                                    ];
 
-                                function getMonthlyValues(row) 
-                                {
-                                    return months.map(month => {
-                                        const val = parseFloat((row[month] || "").replace(/,/g, ""));
-                                        return isNaN(val) ? 0 : val;
-                                    });
-                                }
+                                    // Hardcoded corpus values per fund (₹)
+                                    const corpusValues = {
+                                    "MF 2 - Axis Focused": 179447,
+                                    "MF 3 - Canara Robeco S": 92019,
+                                    "MF 4 - Axis Bluechip S": 361567,
+                                    "MF 5 - Nippon": 31070
+                                    };
 
-                                function renderLineChart(expenseSeries, savingsSeries) 
-                                {
-                                    new Chartist.Line('#balance-doughnut', {
-                                    labels: months,
-                                    series: [expenseSeries, savingsSeries]
-                                    }, {
-                                    showPoint: true,
-                                    fullWidth: true,
-                                    chartPadding: { right: 20, left: 10 },
-                                    lineSmooth: Chartist.Interpolation.simple(),
-                                    axisY: {
-                                        onlyInteger: true
-                                    },
-                                    plugins: [Chartist.plugins.tooltip()]
-                                    });
-                                }
+                                    const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
 
-                                function renderBalanceLineChart(data, selectedMonth = "all") 
-                                {
-                                    const expenseRow = data.find(row => row["Topics"]?.trim().toLowerCase() === "expense");
-                                    const savingsRow = data.find(row => row["Topics"]?.trim().toLowerCase() === "savings");
+                                    const tabsContainer = document.getElementById("mfTabs");
+                                    const contentContainer = document.getElementById("mfContent");
 
-                                    if (!expenseRow || !savingsRow) return;
-
-                                    const expenseSeries = getMonthlyValues(expenseRow);
-                                    const savingsSeries = getMonthlyValues(savingsRow);
-
-                                    let expense = 0;
-                                    let savings = 0;
-
-                                    if (selectedMonth === "all") {
-                                    expense = expenseSeries.reduce((a, b) => a + b, 0);
-                                    savings = savingsSeries.reduce((a, b) => a + b, 0);
-                                    } else {
-                                    const index = months.indexOf(selectedMonth);
-                                    expense = expenseSeries[index] || 0;
-                                    savings = savingsSeries[index] || 0;
+                                    function slugify(text) {
+                                    return text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
                                     }
 
-                                    // Update UI text
-                                    document.getElementById("balance-expense").textContent = `₹${expense.toFixed(2)}`;
-                                    document.getElementById("balance-savings").textContent = `₹${savings.toFixed(2)}`;
-
-                                    // Chart
-                                    if (selectedMonth === "all") {
-                                    renderLineChart(expenseSeries, savingsSeries);
-                                    } else {
-                                    // show single month values in chart
-                                    renderLineChart([expense], [savings]);
+                                    function renderTab(name, index) 
+                                    {
+                                        const tabId = slugify(name);
+                                        const activeClass = index === 0 ? 'active' : '';
+                                        const tabHTML = `
+                                        <li class="nav-item border-bottom border-xl-bottom-0 ${index !== 0 ? 'border-xl-left' : ''}">
+                                        <a class="nav-link d-flex align-items-center py-2 px-3 p-xl-4 ${activeClass}" href="#${tabId}" role="tab" data-toggle="tab">
+                                            <span>${name}</span>
+                                            <small id="${tabId}-total" class="text-muted ml-auto">Loading...</small>
+                                        </a>
+                                        </li>`;
+                                        tabsContainer.insertAdjacentHTML('beforeend', tabHTML);
                                     }
-                                }
 
-                                function updateChartFromFilters() 
-                                {
-                                    const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-                                    if (sheetData.length) {
-                                    renderBalanceLineChart(sheetData, selectedMonth);
+                                    function renderTabContent(name, index) 
+                                    {
+                                        const tabId = slugify(name);
+                                        const activeClass = index === 0 ? 'show active' : '';
+                                        const tabContentHTML = `
+                                            <div class="tab-pane fade ${activeClass}" id="${tabId}" role="tabpanel">
+                                                <div class="row text-center">
+                                                    <div class="col-6 col-md-4 mb-3 mb-md-0">
+                                                        <div class="h3 mb-0" id="${tabId}-total-val">₹0.00</div>
+                                                        <small class="text-muted">Total Investment</small>
+                                                    </div>
+                                                    <div class="col-6 col-md-4 mb-3 mb-md-0 border-left">
+                                                        <div class="h3 mb-0" id="${tabId}-corpus-val">₹0.00</div>
+                                                        <small class="text-muted">Total Corpus</small>
+                                                    </div>
+                                                    <div class="col-12 col-md-4 border-left">
+                                                        <div class="h3 mb-0" id="${tabId}-profit-val">0.00%</div>
+                                                        <small class="text-muted">Net Profit (%)</small>
+                                                    </div>
+                                                </div>
+                                                <div id="${tabId}-chart" class="ct-chart position-relative mt-4" style="height: 250px;"></div>
+                                            </div>`;
+                                        contentContainer.insertAdjacentHTML('beforeend', tabContentHTML);
                                     }
-                                }
 
-                                // Load CSV
-                                Papa.parse(sheetURL, {
-                                download: true,
-                                header: true,
-                                complete: function (results) {
-                                sheetData = results.data.filter(row => row["Topics"]?.trim());
-                                updateChartFromFilters();
-                                }
-                                });
-
-                                // Filter listener
-                                const monthFilter = document.getElementById("monthFilter");
-                                if (monthFilter) {
-                                monthFilter.addEventListener("change", updateChartFromFilters);
-                                }
-                            })();
-                        </script>
-
-                
-                        <!-- other investments Section -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <!-- Card -->
-                            <div class="card h-100">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Other Investments Overview</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Total Invested</span>
-                                            <span class="ml-auto" id="invested-total">₹0.00</span>
-                                        </div>
-                                        <i id="total-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Average per Month</span>
-                                            <span class="ml-auto" id="invested-average">₹0.00</span>
-                                        </div>
-                                        <i class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>PPF/ELSS</span>
-                                            <span class="ml-auto" id="ppf">₹0.00</span>
-                                        </div>
-                                        <i id="ppf-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>NPS</span>
-                                            <span class="ml-auto" id="nps">₹0.00</span>
-                                        </div>
-                                        <i id="nps-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>APY</span>
-                                            <span class="ml-auto" id="apy">₹0.00</span>
-                                        </div>
-                                        <i id="apy-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Gold</span>
-                                            <span class="ml-auto" id="gold">₹0.00</span>
-                                        </div>
-                                        <i id="gold-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <script>
-                            (function () 
-                            {
-                                const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-                                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                                const investedTopics = {
-                                "PPF": "ppf",
-                                "NPS": "nps",
-                                "APY": "apy",
-                                "Gold": "gold"
-                                };
-
-                                let sheetData = [];
-
-                                function getMonthlyValue(row, selectedMonth) 
-                                {
-                                    if (!row) return 0;
-                                    if (selectedMonth === "all") {
-                                    return months.reduce((sum, m) => {
-                                        const val = parseFloat((row[m] || "").replace(/,/g, ""));
-                                        return sum + (isNaN(val) ? 0 : val);
-                                    }, 0);
-                                    } else {
-                                    const val = parseFloat((row[selectedMonth] || "").replace(/,/g, ""));
-                                    return isNaN(val) ? 0 : val;
+                                    function convertWideToLong(data) 
+                                    {
+                                        const months = Object.keys(data[0]).filter(k => k !== "Topics" && k !== "Total");
+                                        const longData = [];
+                                        data.forEach(row => {
+                                        months.forEach(month => {
+                                        const value = parseFloat((row[month] || "").replace(/,/g, ""));
+                                        if (!isNaN(value)) 
+                                        {
+                                            longData.push({
+                                            Topic: row["Topics"],
+                                            Month: month,
+                                            Total: value
+                                            });
+                                        }
+                                        });
+                                        });
+                                        return longData;
                                     }
-                                }
 
-                                function renderInvestedValues(data, selectedMonth = "all") 
-                                {
-                                    let total = 0;
-                                    let topicSums = {};
-
-                                    Object.entries(investedTopics).forEach(([topicName, elementId]) => {
-                                    const row = data.find(r => r["Topics"]?.trim().toLowerCase() === topicName.toLowerCase());
-                                    const value = getMonthlyValue(row, selectedMonth);
-                                    topicSums[elementId] = value;
-                                    total += value;
-                                    });
-
-                                    const avg = selectedMonth === "all" ? total / months.length : total;
-
-                                    document.getElementById("invested-total").textContent = `₹${total.toFixed(2)}`;
-                                    document.getElementById("invested-average").textContent = `₹${avg.toFixed(2)}`;
-
-                                    // Update topic-wise values
-                                    Object.entries(topicSums).forEach(([id, value]) => {
-                                    updateValueWithIcon(id, value);
-                                    });
-                                }
-
-                                function updateInvestedFromFilters() 
-                                {
-                                    const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-                                    if (sheetData.length) {
-                                    renderInvestedValues(sheetData, selectedMonth);
+                                    function renderChart(tabId, labels, values) 
+                                    {
+                                        new Chartist.Line(`#${tabId}-chart`, {
+                                        labels,
+                                        series: [values]
+                                        }, {
+                                        low: 0,
+                                        showArea: true,
+                                        fullWidth: true,
+                                        chartPadding: { right: 20 },
+                                        lineSmooth: Chartist.Interpolation.simple(),
+                                        axisX: { showGrid: false },
+                                        axisY: { onlyInteger: true },
+                                        plugins: [
+                                        Chartist.plugins.tooltip({
+                                            currency: "₹",
+                                            class: 'chart-tooltip'
+                                        })
+                                        ]
+                                        });
                                     }
-                                }
 
-                                function updateValueWithIcon(id, value) 
-                                {
-                                    const element = document.getElementById(id);
-                                    let icon = '<i class="gd-minus icon-text icon-text-xs text-muted ml-2"></i>';
-                                    if (value > 1000) icon = '<i class="gd-arrow-up icon-text icon-text-xs text-success ml-2"></i>';
-                                    else if (value > 0) icon = '<i class="gd-arrow-down icon-text icon-text-xs text-warning ml-2"></i>';
+                                    function initDashboard(data) 
+                                    {
+                                        const longData = convertWideToLong(data);
 
-                                    element.innerHTML = `₹${value.toFixed(2)} ${icon}`;
-                                }
+                                        mutualFunds.forEach((mf, index) => {
+                                        const tabId = slugify(mf);
+                                        renderTab(mf, index);
+                                        renderTabContent(mf, index);
+                                        });
 
+                                        mutualFunds.forEach((mf, index) => {
+                                        const tabId = slugify(mf);
+                                        const mfRows = longData.filter(r => r.Topic.trim().toLowerCase() === mf.toLowerCase());
+                                        if (mfRows.length === 0) return;
 
-                                Papa.parse(sheetURL, {
-                                download: true,
-                                header: true,
-                                complete: function (results) {
-                                sheetData = results.data.filter row => row["Topics"]?.trim());
-                                updateInvestedFromFilters();
-                                }
-                                });
+                                        const labels = mfRows.map(row => row.Month);
+                                        const values = mfRows.map(row => parseFloat(row.Total) || 0);
+                                        const total = values.reduce((a, b) => a + b, 0);
+                                        const corpus = corpusValues[mf] || 0;
+                                        const netProfit = corpus && total ? (((corpus - total) / total) * 100).toFixed(2) : "0.00";
 
-                                const monthFilter = document.getElementById("monthFilter");
-                                if (monthFilter) {
-                                    monthFilter.addEventListener("change", updateInvestedFromFilters);
-                                }
-                            })();
-                        </script>
+                                        document.getElementById(`${tabId}-total-val`).textContent = `₹${total.toFixed(2)}`;
+                                        document.getElementById(`${tabId}-corpus-val`).textContent = `₹${corpus.toFixed(2)}`;
+                                        document.getElementById(`${tabId}-profit-val`).textContent = `${netProfit}%`;
+                                        document.getElementById(`${tabId}-total`).textContent = `₹${total.toFixed(2)}`;
 
+                                        // Initial chart render only for active tab
+                                        if (index === 0) {
+                                        renderChart(tabId, labels, values);
+                                        }
 
-                        <!-- recharge Section -->
-                        <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                            <!-- Card -->
-                            <div class="card h-100">
-                                <div class="card-header d-flex">
-                                    <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Recharge Overview</h5>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Total Recharge</span>
-                                            <span class="ml-auto" id="recharge-total">₹0.00</span>
-                                        </div>
-                                        <i id="total-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Average per Month</span>
-                                            <span class="ml-auto" id="recharge-average">₹0.00</span>
-                                        </div>
-                                        <i class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Jio Recharge Home</span>
-                                            <span class="ml-auto" id="jio-home">₹0.00</span>
-                                        </div>
-                                        <i id="jio-home-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Jio Recharge Personal</span>
-                                            <span class="ml-auto" id="jio-personal">₹0.00</span>
-                                        </div>
-                                        <i id="jio-personal-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="border-bottom media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>VI Recharge Personal</span>
-                                            <span class="ml-auto" id="vi-personal">₹0.00</span>
-                                        </div>
-                                        <i id="vi-personal-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-
-                                    <div class="media align-items-center p-3">
-                                        <div class="media-body d-flex align-items-center mr-2">
-                                            <span>Internet Recharge</span>
-                                            <span class="ml-auto" id="internet-recharge">₹0.00</span>
-                                        </div>
-                                        <i id="internet-recharge-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <script>
-                            (function () 
-                            {
-                                const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
-                                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                                const rechargeTopics = {
-                                    "jio recharge home": "jio-home",
-                                    "jio recharge personal": "jio-personal",
-                                    "vi recharge personal": "vi-personal",
-                                    "internet recharge": "internet-recharge"
-                                };
-
-                                let sheetData = [];
-
-                                function getMonthlyValue(row, selectedMonth) 
-                                {
-                                    if (!row) return 0;
-                                    if (selectedMonth === "all") {
-                                    return months.reduce((sum, m) => {
-                                        const val = parseFloat((row[m] || "").replace(/,/g, ""));
-                                        return sum + (isNaN(val) ? 0 : val);
-                                    }, 0);
-                                    } else {
-                                    const val = parseFloat((row[selectedMonth] || "").replace(/,/g, ""));
-                                    return isNaN(val) ? 0 : val;
+                                        // Attach listener for others
+                                        $(`a[href="#${tabId}"]`).on('shown.bs.tab', function () {
+                                        renderChart(tabId, labels, values);
+                                        });
+                                        });
                                     }
-                                }
 
-                                function renderRechargeValues(data, selectedMonth = "all") 
-                                {
-                                    let total = 0;
-                                    let topicSums = {};
-
-                                    Object.entries(rechargeTopics).forEach(([topicName, elementId]) => {
-                                    const row = data.find(r => r["Topics"]?.trim().toLowerCase() === topicName);
-                                    const value = getMonthlyValue(row, selectedMonth);
-                                    topicSums[elementId] = value;
-                                    total += value;
-                                    });
-
-                                    const avg = selectedMonth === "all" ? total / months.length : total;
-
-                                    document.getElementById("recharge-total").textContent = `₹${total.toFixed(2)}`;
-                                    document.getElementById("recharge-average").textContent = `₹${avg.toFixed(2)}`;
-
-                                    // Update topic-wise values
-                                    Object.entries(topicSums).forEach(([id, value]) => {
-                                    updateValueWithIcon(id, value);
-                                    });
-                                }
-
-                                function updateRechargeFromFilters() 
-                                {
-                                    const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-                                    if (sheetData.length) {
-                                    renderRechargeValues(sheetData, selectedMonth);
-                                    }
-                                }
-
-                                function updateValueWithIcon(id, value) 
-                                {
-                                    const element = document.getElementById(id);
-                                    let icon = '<i class="gd-minus icon-text icon-text-xs text-muted ml-2"></i>';
-                                    if (value > 1000) icon = '<i class="gd-arrow-up icon-text icon-text-xs text-success ml-2"></i>';
-                                    else if (value > 0) icon = '<i class="gd-arrow-down icon-text icon-text-xs text-warning ml-2"></i>';
-
-                                    element.innerHTML = `₹${value.toFixed(2)} ${icon}`;
-                                }
-
-
-                                Papa.parse(sheetURL, {
-                                    download: true,
+                                    Papa.parse(csvUrl, {
                                     header: true,
-                                    complete: function (results) {
-                                    sheetData = results.data.filter(row => row["Topics"]?.trim());
-                                    updateRechargeFromFilters();
+                                    download: true,
+                                    complete: function(results) {
+                                        initDashboard(results.data);
                                     }
-                                });
-
-                                const monthFilter = document.getElementById("monthFilter");
-                                if (monthFilter) {
-                                    monthFilter.addEventListener("change", updateRechargeFromFilters);
-                                }
-                            })();
-                        </script>
-  
-
-
-                    </div>
-
-
-
-
-                    <div class="row">                    
-                        <!-- Dinner Bill Widget
-                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
-                            <div class="card flex-row align-items-center p-3 p-md-4">
-                                <div class="icon icon-lg bg-soft-primary rounded-circle mr-3">
-                                    <i class="gd-bar-chart icon-text d-inline-block text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="lh-1 mb-1" id="dinner-total">₹0.00</h4>
-                                    <h6 class="mb-0">Total Dinner Bill</h6>
-                                </div>
-                                <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
-                            </div>                    
-                        </div>
-                        <!-- End Dinner Bill Widget -->
-
-                        <!-- Outside Dinner Total Widget -->    
-                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                        
-                            <div class="card flex-row align-items-center p-3 p-md-4">
-                                <div class="icon icon-lg bg-soft-secondary rounded-circle mr-3">
-                                    <i class="gd-wallet icon-text d-inline-block text-secondary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="lh-1 mb-1" id="dinneroutside-total">₹0.00</h4>
-                                    <h6 class="mb-0">Total Outside Dinner Expenses</h6>
-                                </div>
-                                <i class="gd-arrow-down icon-text d-flex text-danger ml-auto"></i>
-                            </div>                        
-                        </div>
-                        <!-- Education Total Widget -->
-
-                        <!-- Total Car Widget 
-                        <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
-                            <div class="card flex-row align-items-center p-3 p-md-4">
-                                <div class="icon icon-lg bg-soft-warning rounded-circle mr-3">
-                                    <i class="gd-money icon-text d-inline-block text-warning"></i>
-                                </div>
-                                <div>
-                                    <h4 class="lh-1 mb-1" id="car-total">₹0.00</h4>
-                                    <h6 class="mb-0">Total Car Expenses</h6>
-                                </div>
-                                <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
+                                    });
+                                </script>
                             </div>
+                            <!-- End Mutual Funds Tab Section -->
                         </div>
-                        <!-- Total Car Widget -->
+                    
+                        <div class="row">
+                            <!-- balance overview -->
+                            <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                <!-- Card -->
+                                <div class="card h-100">
+                                    <div class="card-header d-flex">
+                                        <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Balance Overview</h5>
+                                    </div>
+
+                                    <div class="card-body p-0">
+                                        <div class="p-3 p-md-4">
+                                            <div id="balance-doughnut" class="ct-chart ct-golden-section" style="height: 160px;"></div>
+                                        </div>
+
+                                        <div class="border-top border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Expense</span>
+                                                <span class="ml-auto" id="balance-expense">₹0.00</span>
+                                            </div>
+                                            <i class="gd-arrow-up icon-text icon-text-xs d-flex text-danger ml-auto"></i>
+                                        </div>
+
+                                        <div class="media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Savings</span>
+                                                <span class="ml-auto" id="balance-savings">₹0.00</span>
+                                            </div>
+                                            <i class="gd-arrow-down icon-text icon-text-xs d-flex text-success ml-auto"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Card -->
+                            
+                                <script>
+                                    (function () 
+                                    {
+                                        const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
+                                        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+                                        let sheetData = [];
+
+                                        function getMonthlyValues(row) 
+                                        {
+                                            return months.map(month => {
+                                                const val = parseFloat((row[month] || "").replace(/,/g, ""));
+                                                return isNaN(val) ? 0 : val;
+                                            });
+                                        }
+
+                                        function renderLineChart(expenseSeries, savingsSeries) 
+                                        {
+                                            new Chartist.Line('#balance-doughnut', {
+                                            labels: months,
+                                            series: [expenseSeries, savingsSeries]
+                                            }, {
+                                            showPoint: true,
+                                            fullWidth: true,
+                                            chartPadding: { right: 20, left: 10 },
+                                            lineSmooth: Chartist.Interpolation.simple(),
+                                            axisY: {
+                                                onlyInteger: true
+                                            },
+                                            plugins: [Chartist.plugins.tooltip()]
+                                            });
+                                        }
+
+                                        function renderBalanceLineChart(data, selectedMonth = "all") 
+                                        {
+                                            const expenseRow = data.find(row => row["Topics"]?.trim().toLowerCase() === "expense");
+                                            const savingsRow = data.find(row => row["Topics"]?.trim().toLowerCase() === "savings");
+
+                                            if (!expenseRow || !savingsRow) return;
+
+                                            const expenseSeries = getMonthlyValues(expenseRow);
+                                            const savingsSeries = getMonthlyValues(savingsRow);
+
+                                            let expense = 0;
+                                            let savings = 0;
+
+                                            if (selectedMonth === "all") {
+                                            expense = expenseSeries.reduce((a, b) => a + b, 0);
+                                            savings = savingsSeries.reduce((a, b) => a + b, 0);
+                                            } else {
+                                            const index = months.indexOf(selectedMonth);
+                                            expense = expenseSeries[index] || 0;
+                                            savings = savingsSeries[index] || 0;
+                                            }
+
+                                            // Update UI text
+                                            document.getElementById("balance-expense").textContent = `₹${expense.toFixed(2)}`;
+                                            document.getElementById("balance-savings").textContent = `₹${savings.toFixed(2)}`;
+
+                                            // Chart
+                                            if (selectedMonth === "all") {
+                                            renderLineChart(expenseSeries, savingsSeries);
+                                            } else {
+                                            // show single month values in chart
+                                            renderLineChart([expense], [savings]);
+                                            }
+                                        }
+
+                                        function updateChartFromFilters() 
+                                        {
+                                            const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+                                            if (sheetData.length) {
+                                            renderBalanceLineChart(sheetData, selectedMonth);
+                                            }
+                                        }
+
+                                        // Load CSV
+                                        Papa.parse(sheetURL, {
+                                        download: true,
+                                        header: true,
+                                        complete: function (results) {
+                                        sheetData = results.data.filter(row => row["Topics"]?.trim());
+                                        updateChartFromFilters();
+                                        }
+                                        });
+
+                                        // Filter listener
+                                        const monthFilter = document.getElementById("monthFilter");
+                                        if (monthFilter) {
+                                        monthFilter.addEventListener("change", updateChartFromFilters);
+                                        }
+                                    })();
+                                </script>
+                            </div>
+                
+                            <!-- other investments Section -->
+                            <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                <!-- Card -->
+                                <div class="card h-100">
+                                    <div class="card-header d-flex">
+                                        <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Other Investments Overview</h5>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Total Invested</span>
+                                                <span class="ml-auto" id="invested-total">₹0.00</span>
+                                            </div>
+                                            <i id="total-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Average per Month</span>
+                                                <span class="ml-auto" id="invested-average">₹0.00</span>
+                                            </div>
+                                            <i class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>PPF/ELSS</span>
+                                                <span class="ml-auto" id="ppf">₹0.00</span>
+                                            </div>
+                                            <i id="ppf-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>NPS</span>
+                                                <span class="ml-auto" id="nps">₹0.00</span>
+                                            </div>
+                                            <i id="nps-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>APY</span>
+                                                <span class="ml-auto" id="apy">₹0.00</span>
+                                            </div>
+                                            <i id="apy-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Gold</span>
+                                                <span class="ml-auto" id="gold">₹0.00</span>
+                                            </div>
+                                            <i id="gold-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+                                    </div>
+                                </div>                       
+
+
+                                <script>
+                                    (function () 
+                                    {
+                                        const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
+                                        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                        const investedTopics = {
+                                        "PPF": "ppf",
+                                        "NPS": "nps",
+                                        "APY": "apy",
+                                        "Gold": "gold"
+                                        };
+
+                                        let sheetData = [];
+
+                                        function getMonthlyValue(row, selectedMonth) 
+                                        {
+                                            if (!row) return 0;
+                                            if (selectedMonth === "all") {
+                                            return months.reduce((sum, m) => {
+                                                const val = parseFloat((row[m] || "").replace(/,/g, ""));
+                                                return sum + (isNaN(val) ? 0 : val);
+                                            }, 0);
+                                            } else {
+                                            const val = parseFloat((row[selectedMonth] || "").replace(/,/g, ""));
+                                            return isNaN(val) ? 0 : val;
+                                            }
+                                        }
+
+                                        function renderInvestedValues(data, selectedMonth = "all") 
+                                        {
+                                            let total = 0;
+                                            let topicSums = {};
+
+                                            Object.entries(investedTopics).forEach(([topicName, elementId]) => {
+                                            const row = data.find(r => r["Topics"]?.trim().toLowerCase() === topicName.toLowerCase());
+                                            const value = getMonthlyValue(row, selectedMonth);
+                                            topicSums[elementId] = value;
+                                            total += value;
+                                            });
+
+                                            const avg = selectedMonth === "all" ? total / months.length : total;
+
+                                            document.getElementById("invested-total").textContent = `₹${total.toFixed(2)}`;
+                                            document.getElementById("invested-average").textContent = `₹${avg.toFixed(2)}`;
+
+                                            // Update topic-wise values
+                                            Object.entries(topicSums).forEach(([id, value]) => {
+                                            updateValueWithIcon(id, value);
+                                            });
+                                        }
+
+                                        function updateInvestedFromFilters() 
+                                        {
+                                            const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+                                            if (sheetData.length) {
+                                            renderInvestedValues(sheetData, selectedMonth);
+                                            }
+                                        }
+
+                                        function updateValueWithIcon(id, value) 
+                                        {
+                                            const element = document.getElementById(id);
+                                            let icon = '<i class="gd-minus icon-text icon-text-xs text-muted ml-2"></i>';
+                                            if (value > 1000) icon = '<i class="gd-arrow-up icon-text icon-text-xs text-success ml-2"></i>';
+                                            else if (value > 0) icon = '<i class="gd-arrow-down icon-text icon-text-xs text-warning ml-2"></i>';
+
+                                            element.innerHTML = `₹${value.toFixed(2)} ${icon}`;
+                                        }
+
+
+                                        Papa.parse(sheetURL, {
+                                        download: true,
+                                        header: true,
+                                        complete: function (results) {
+                                        sheetData = results.data.filter(row => row["Topics"]?.trim());
+                                        updateInvestedFromFilters();
+                                        }
+                                        });
+
+                                        const monthFilter = document.getElementById("monthFilter");
+                                        if (monthFilter) {
+                                            monthFilter.addEventListener("change", updateInvestedFromFilters);
+                                        }
+                                    })();
+                                </script>
+                            </div>
+                            <!-- End other investments Section -->
+
+
+                            <!-- recharge Section -->
+                            <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
+                                <!-- Card -->
+                                <div class="card h-100">
+                                    <div class="card-header d-flex">
+                                        <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Recharge Overview</h5>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Total Recharge</span>
+                                                <span class="ml-auto" id="recharge-total">₹0.00</span>
+                                            </div>
+                                            <i id="total-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Average per Month</span>
+                                                <span class="ml-auto" id="recharge-average">₹0.00</span>
+                                            </div>
+                                            <i class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Jio Recharge Home</span>
+                                                <span class="ml-auto" id="jio-home">₹0.00</span>
+                                            </div>
+                                            <i id="jio-home-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Jio Recharge Personal</span>
+                                                <span class="ml-auto" id="jio-personal">₹0.00</span>
+                                            </div>
+                                            <i id="jio-personal-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="border-bottom media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>VI Recharge Personal</span>
+                                                <span class="ml-auto" id="vi-personal">₹0.00</span>
+                                            </div>
+                                            <i id="vi-personal-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+
+                                        <div class="media align-items-center p-3">
+                                            <div class="media-body d-flex align-items-center mr-2">
+                                                <span>Internet Recharge</span>
+                                                <span class="ml-auto" id="internet-recharge">₹0.00</span>
+                                            </div>
+                                            <i id="internet-recharge-icon" class="gd-arrow-right icon-text icon-text-xs d-flex text-muted ml-auto"></i>
+                                        </div>
+                                    </div>
+                                </div>                     
+
+                                <script>
+                                    (function () 
+                                    {
+                                        const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=894446003&single=true&output=csv";
+                                        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                        const rechargeTopics = {
+                                            "jio recharge home": "jio-home",
+                                            "jio recharge personal": "jio-personal",
+                                            "vi recharge personal": "vi-personal",
+                                            "internet recharge": "internet-recharge"
+                                        };
+
+                                        let sheetData = [];
+
+                                        function getMonthlyValue(row, selectedMonth) 
+                                        {
+                                            if (!row) return 0;
+                                            if (selectedMonth === "all") {
+                                            return months.reduce((sum, m) => {
+                                                const val = parseFloat((row[m] || "").replace(/,/g, ""));
+                                                return sum + (isNaN(val) ? 0 : val);
+                                            }, 0);
+                                            } else {
+                                            const val = parseFloat((row[selectedMonth] || "").replace(/,/g, ""));
+                                            return isNaN(val) ? 0 : val;
+                                            }
+                                        }
+
+                                        function renderRechargeValues(data, selectedMonth = "all") 
+                                        {
+                                            let total = 0;
+                                            let topicSums = {};
+
+                                            Object.entries(rechargeTopics).forEach(([topicName, elementId]) => {
+                                            const row = data.find(r => r["Topics"]?.trim().toLowerCase() === topicName);
+                                            const value = getMonthlyValue(row, selectedMonth);
+                                            topicSums[elementId] = value;
+                                            total += value;
+                                            });
+
+                                            const avg = selectedMonth === "all" ? total / months.length : total;
+
+                                            document.getElementById("recharge-total").textContent = `₹${total.toFixed(2)}`;
+                                            document.getElementById("recharge-average").textContent = `₹${avg.toFixed(2)}`;
+
+                                            // Update topic-wise values
+                                            Object.entries(topicSums).forEach(([id, value]) => {
+                                            updateValueWithIcon(id, value);
+                                            });
+                                        }
+
+                                        function updateRechargeFromFilters() 
+                                        {
+                                            const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+                                            if (sheetData.length) {
+                                            renderRechargeValues(sheetData, selectedMonth);
+                                            }
+                                        }
+
+                                        function updateValueWithIcon(id, value) 
+                                        {
+                                            const element = document.getElementById(id);
+                                            let icon = '<i class="gd-minus icon-text icon-text-xs text-muted ml-2"></i>';
+                                            if (value > 1000) icon = '<i class="gd-arrow-up icon-text icon-text-xs text-success ml-2"></i>';
+                                            else if (value > 0) icon = '<i class="gd-arrow-down icon-text icon-text-xs text-warning ml-2"></i>';
+
+                                            element.innerHTML = `₹${value.toFixed(2)} ${icon}`;
+                                        }
+
+
+                                        Papa.parse(sheetURL, {
+                                            download: true,
+                                            header: true,
+                                            complete: function (results) {
+                                            sheetData = results.data.filter(row => row["Topics"]?.trim());
+                                            updateRechargeFromFilters();
+                                            }
+                                        });
+
+                                        const monthFilter = document.getElementById("monthFilter");
+                                        if (monthFilter) {
+                                            monthFilter.addEventListener("change", updateRechargeFromFilters);
+                                        }
+                                    })();
+                                </script>
+                            </div>
+                            <!-- End recharge Section -->
+
+                        </div>
+
+                        <div class="row">                    
+                            <!-- Dinner Bill Widget
+                            <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
+                                <div class="card flex-row align-items-center p-3 p-md-4">
+                                    <div class="icon icon-lg bg-soft-primary rounded-circle mr-3">
+                                        <i class="gd-bar-chart icon-text d-inline-block text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="lh-1 mb-1" id="dinner-total">₹0.00</h4>
+                                        <h6 class="mb-0">Total Dinner Bill</h6>
+                                    </div>
+                                    <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
+                                </div>                    
+                            </div>
+                            <!-- End Dinner Bill Widget -->
+
+                            <!-- Outside Dinner Total Widget -->    
+                            <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                        
+                                <div class="card flex-row align-items-center p-3 p-md-4">
+                                    <div class="icon icon-lg bg-soft-secondary rounded-circle mr-3">
+                                        <i class="gd-wallet icon-text d-inline-block text-secondary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="lh-1 mb-1" id="dinneroutside-total">₹0.00</h4>
+                                        <h6 class="mb-0">Total Outside Dinner Expenses</h6>
+                                    </div>
+                                    <i class="gd-arrow-down icon-text d-flex text-danger ml-auto"></i>
+                                </div>                        
+                            </div>
+                            <!-- Outside Dinner Total Widget -->
+
+                            <!-- Total Car Widget 
+                            <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                    
+                                <div class="card flex-row align-items-center p-3 p-md-4">
+                                    <div class="icon icon-lg bg-soft-warning rounded-circle mr-3">
+                                        <i class="gd-money icon-text d-inline-block text-warning"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="lh-1 mb-1" id="car-total">₹0.00</h4>
+                                        <h6 class="mb-0">Total Car Expenses</h6>
+                                    </div>
+                                    <i class="gd-arrow-up icon-text d-flex text-success ml-auto"></i>
+                                </div>
+                            </div>
+                            <!-- Total Car Widget -->
+
+                        </div> 
 
                     </div>    
-
-
-
-
-
-
-                </div>    
+                </div>
             </div>
+            <!-- End Main Content -->
         </main>
     </body>
 
 </html>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var dashboardFilter = document.getElementById('dashboardFilter');
-    if (dashboardFilter) {
-        dashboardFilter.addEventListener('change', function() {
-            var selected = dashboardFilter.value;
-            if (selected && selected !== window.location.pathname.split('/').pop()) {
-                window.location.href = selected;
-            }
-        });
-    }
-});
-</script>
