@@ -41,7 +41,7 @@
                         <div class="filters">
                             <label>Year:</label>
                             <select id="yearFilter">
-                            
+                            <option value="2025-2026">2025-2026</option>
                             <option value="2024-2025">2024-2025</option>
                             <option value="2023-2024">2023-2024</option>
                             <option value="2022-2023">2022-2023</option>
@@ -344,7 +344,7 @@
                                 const allowedFunds5 = ["Titan Bio tech", "Uniion Bank", "Vakrangee", "VLEGOV"];
                                 const allowedFunds6 = ["Wipro", "Yesbank", "IRFC", "PolyCab"];
                                 const allowedFunds7 = ["vodafone", "IOCL", "sical", "IRB"];
-                                const allowedFunds8 = ["Kamdhenu", "Inox", "RKSV"];
+                                const allowedFunds8 = ["Kamdhenu", "Inox", "GOLDIETF"];
 
 
                                 function slugify(text) {
@@ -480,7 +480,7 @@
                                     "NLC", "oil & natural", "RBL Bank", "RIIL", "Renuka", "Suzlon", "Tata Chem",
                                     "TCPL", "Tata Motors", "Tata Power", "Titan Bio tech", "Uniion Bank", 
                                     "Vakrangee", "VLEGOV", "Wipro", "Yesbank", "IRFC", "PolyCab", 
-                                    "vodafone", "IOCL", "sical", "IRB", "Kamdhenu", "Inox", "RKSV"];
+                                    "vodafone", "IOCL", "sical", "IRB", "Kamdhenu", "Inox", "GOLDIETF"];
 
                                     const filtered = data.filter(row => 
                                     row["Year"]?.trim() === selectedYear && mutualFunds.includes(row["Type"]?.trim())
