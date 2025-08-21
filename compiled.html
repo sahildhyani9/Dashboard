@@ -147,13 +147,89 @@
                         </ul>
 
                         <style>
-                         .side-nav-menu {
-                            position: sticky;      /* Sticks to the top of the viewport */
-                            top: 0;                /* Position from top */
-                            max-height: 100vh;     /* Fill screen height */
-                            overflow-y: auto;      /* Add vertical scroll when content overflows */
-                            padding-right: 5px;
+                            .side-nav-menu {
+                                position: sticky;      /* Sticks to the top of the viewport */
+                                top: 0;                /* Position from top */
+                                max-height: 100vh;     /* Fill screen height */
+                                overflow-y: auto;      /* Add vertical scroll when content overflows */
+                                padding-right: 5px;
                             }
+
+                            /* Navigation Container */
+                            .side-nav-menu-item {
+                            margin: 4px 0;
+                            border-radius: 8px;
+                            overflow: hidden;
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            }
+
+                            /* Individual Link Styling */
+                            .side-nav-menu-link 
+                            {
+                                padding: 12px 20px;
+                                position: relative;
+                                transition: all 0.25s ease;
+                                background: rgba(255, 255, 255, 0.05);
+                                color: #4a4a4a;
+
+                                /* Hover Effect Base */
+                                &::before {
+                                    content: "";
+                                    position: absolute;
+                                    left: -4px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    height: 60%;
+                                    width: 3px;
+                                    background: #4a90e2;
+                                    opacity: 0;
+                                    transition: opacity 0.3s ease;
+                                }
+
+                                &:hover {
+                                    background: rgba(74, 144, 226, 0.05);
+                                    transform: translateX(4px);
+                                    color: #2c3e50;
+                                    
+                                    &::before {
+                                    opacity: 1;
+                                    }
+                                    
+                                    .gd-dashboard {
+                                    color: #4a90e2;
+                                    transform: scale(1.1);
+                                    }
+                                }
+                            }
+
+                            /* Icon Animation */
+                            .gd-dashboard {
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            font-size: 1.2rem;
+                            color: #7f8c8d;
+                            }
+                            
+                            /* Text Styling */
+                            .side-nav-fadeout-on-closed {
+                            font-size: 0.95rem;
+                            letter-spacing: 0.3px;
+                            transition: opacity 0.3s ease;
+                            }
+
+                            /* Different Colors for Each Nav Item */
+                            .side-nav-menu-item {
+                            &:nth-child(1) { --nav-color: #4a90e2; }
+                            &:nth-child(2) { --nav-color: #7ed321; }
+                            &:nth-child(3) { --nav-color: #f5a623; }
+                            &:nth-child(4) { --nav-color: #bd10e0; }
+                            &:nth-child(5) { --nav-color: #d0021b; }
+                            
+                            .side-nav-menu-link:hover {
+                                &::before { background: var(--nav-color); }
+                                .gd-dashboard { color: var(--nav-color); }
+                            }
+                            }
+
                         </style>
                     </div>                
                     <!-- End Sidebar Nav -->
@@ -326,303 +402,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <!-- END RENT AND GROCERY -->
-                                <script>
-                                    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=1215517545&single=true&output=csv";
-                                    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                                    const dataMap = {};
-
-                                    function renderCard(topic) 
-                                    {
-                                        const topicKey = topic.toLowerCase();
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        const dataPoints = selectedMonth === "all"
-                                            ? months.map(m => values[m] || 0)
-                                            : [values[selectedMonth] || 0];
-                                        const chartLabels = selectedMonth === "all" ? months : [selectedMonth];
-
-                                        const total = dataPoints.reduce((a, b) => a + b, 0).toFixed(2);
-
-                                        // Find last non-zero value and its month
-                                    let latestIdx = -1;
-                                        for (let i = dataPoints.length - 1; i >= 0; i--) {
-                                        const val = values[chartLabels[i]];
-                                        if (val !== "" && val != null && !isNaN(val) && parseFloat(val) !== 0) {
-                                            latestIdx = i;
-                                            break;
-                                        }
-                                        }
-
-                                        const latest = latestIdx >= 0 ? dataPoints[latestIdx] : 0;
-                                        const latestMonth = latestIdx >= 0 ? chartLabels[latestIdx] : "N/A";
-                                        const prev = latestIdx > 0 ? dataPoints[latestIdx - 1] : 0;
-
-                                        const diff = (latest - prev).toFixed(2);
-                                        const pct = prev !== 0 ? ((diff / prev) * 100).toFixed(2) : 0;
-
-                                        // Update values in UI
-                                        document.getElementById(`${topicKey}-total-value`).innerText = `₹${total}`;
-                                        document.getElementById(`${topicKey}-monthly-change`).innerHTML =
-                                        `₹${latest.toFixed(2)} <span class="text-${pct >= 0 ? 'success' : 'danger'} mx-1">${pct >= 0 ? '+' : ''}${pct}%</span> ${latestMonth}`;
-
-
-                                        new Chartist.Line(`#${topicKey}-chart`, {
-                                            labels: chartLabels,
-                                            series: [dataPoints]
-                                        }, {
-                                            showPoint: true,
-                                            showArea: false,
-                                            lineSmooth: false,
-                                            axisX: { showGrid: false, showLabel: true },
-                                            axisY: { onlyInteger: true },
-                                            chartPadding: { top: 10, right: 20, bottom: 10, left: 10 },
-                                            plugins: [Chartist.plugins.tooltip()]
-                                        });
-                                    }
-
-
-                                    const foodTopics = ["lunch", "dinner", "burger", "pizza","chowmein/momo/coffee"]; // add more later
-                                    function calculateFoodTotal(dataMap, selectedMonth = "all") 
-                                    {
-                                        let total = 0;
-                                        foodTopics.forEach(topic => 
-                                        {
-                                            const values = dataMap[topic] || {};
-                                            if (selectedMonth === "all") 
-                                            {
-                                                months.forEach(month => {
-                                                total += values[month] || 0;
-                                                });
-                                            } else {
-                                                total += values[selectedMonth] || 0;
-                                            }
-                                        });
-                                        return total.toFixed(2);
-                                    }
-
-                                    
-                                    function renderTravelCard() 
-                                    {
-                                        const topicKey = "travel";
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        let travelTotal = 0;
-                                        if (selectedMonth === "all") {
-                                            months.forEach(month => {
-                                                travelTotal += values[month] || 0;
-                                            });
-                                        } else {
-                                            travelTotal = values[selectedMonth] || 0;
-                                        }
-
-                                        const travelValueElem = document.getElementById("travel-total");
-                                        if (travelValueElem) {
-                                            travelValueElem.innerText = `₹${travelTotal.toFixed(2)}`;
-                                        }
-                                    }
-
-
-                                    function renderGiftCard() 
-                                    {
-                                        const topicKey = "gift";
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        let giftTotal = 0;
-                                        if (selectedMonth === "all") {
-                                            months.forEach(month => {
-                                                giftTotal += values[month] || 0;
-                                            });
-                                        } else {
-                                            giftTotal = values[selectedMonth] || 0;
-                                        }
-
-                                        const giftValueElem = document.getElementById("gift-total");
-                                        if (giftValueElem) {
-                                            giftValueElem.innerText = `₹${giftTotal.toFixed(2)}`;
-                                        }
-                                    }
-
-                                    function renderElectricityCard() 
-                                    {
-                                        const topicKey = "electricity";
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        let electricityTotal = 0;
-                                        if (selectedMonth === "all") {
-                                            months.forEach(month => {
-                                                electricityTotal += values[month] || 0;
-                                            });
-                                        } else {
-                                            electricityTotal = values[selectedMonth] || 0;
-                                        }
-
-                                        const electricityValueElem = document.getElementById("electricity-total");
-                                        if (electricityValueElem) {
-                                            electricityValueElem.innerText = `₹${electricityTotal.toFixed(2)}`;
-                                        }
-                                    }
-
-                                    function renderInvestmentsCard() 
-                                    {
-                                        const topicKey = "investments";
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        let investmentsTotal = 0;
-                                        if (selectedMonth === "all") {
-                                            months.forEach(month => {
-                                                investmentsTotal += values[month] || 0;
-                                            });
-                                        } else {
-                                            investmentsTotal = values[selectedMonth] || 0;
-                                        }
-
-                                        const investmentsValueElem = document.getElementById("investments-total");
-                                        if (investmentsValueElem) {
-                                            investmentsValueElem.innerText = `₹${investmentsTotal.toFixed(2)}`;
-                                        }
-                                    }
-
-                                    function renderbeautyCard() 
-                                    {
-                                        const topicKey = "beauty";
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        let beautyTotal = 0;
-                                        if (selectedMonth === "all") {
-                                            months.forEach(month => {
-                                                beautyTotal += values[month] || 0;
-                                            });
-                                        } else {
-                                            beautyTotal = values[selectedMonth] || 0;
-                                        }
-
-                                        const beautyValueElem = document.getElementById("beauty-total");
-                                        if (beautyValueElem) {
-                                            beautyValueElem.innerText = `₹${beautyTotal.toFixed(2)}`;
-                                        }
-                                    }
-
-                                    function renderTaxCard() 
-                                    {
-                                        const topicKey = "tax";
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        let taxTotal = 0;
-                                        if (selectedMonth === "all") {
-                                            months.forEach(month => {
-                                                taxTotal += values[month] || 0;
-                                            });
-                                        } else {
-                                            taxTotal = values[selectedMonth] || 0;
-                                        }
-
-                                        const taxValueElem = document.getElementById("tax-total");
-                                        if (taxValueElem) {
-                                            taxValueElem.innerText = `₹${taxTotal.toFixed(2)}`;
-                                        }
-                                    }
-
-                                    function renderShoppingCard() 
-                                    {
-                                        const topicKey = "shopping";
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        let shoppingTotal = 0;
-                                        if (selectedMonth === "all") {
-                                            months.forEach(month => {
-                                                shoppingTotal += values[month] || 0;
-                                            });
-                                        } else {
-                                            shoppingTotal = values[selectedMonth] || 0;
-                                        }
-
-                                        const shoppingValueElem = document.getElementById("shopping-total");
-                                        if (shoppingValueElem) {
-                                            shoppingValueElem.innerText = `₹${shoppingTotal.toFixed(2)}`;
-                                        }
-                                    }
-
-                                    function renderPPFCard() 
-                                    {
-                                        const topicKey = "ppf";
-                                        const values = dataMap[topicKey] || {};
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-
-                                        let ppfTotal = 0;
-                                        if (selectedMonth === "all") {
-                                            months.forEach(month => {
-                                                ppfTotal += values[month] || 0;
-                                            });
-                                        } else {
-                                            ppfTotal = values[selectedMonth] || 0;
-                                        }
-
-                                        const ppfValueElem = document.getElementById("ppf-total");
-                                        if (ppfValueElem) {
-                                            ppfValueElem.innerText = `₹${ppfTotal.toFixed(2)}`;
-                                        }
-                                    }
-                               
-                                    // Render all cards
-                                    function renderAllCards() 
-                                    {
-                                        document.querySelectorAll('[data-topic]').forEach(card => {
-                                        const topic = card.getAttribute("data-topic");
-                                        renderCard(topic);
-                                        });
-
-                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
-                                        const totalFoodSpend = calculateFoodTotal(dataMap, selectedMonth);
-                                        const foodElem = document.getElementById("food-total");
-                                        if (foodElem) {
-                                        foodElem.innerText = `₹${totalFoodSpend}`;
-                                        }
-
-                                        renderTravelCard(); // 👈 Add this here
-                                        renderGiftCard(); // 👈 Add this here
-                                        renderElectricityCard(); // 👈 Add this here
-                                        renderInvestmentsCard(); // 👈 Add this here
-                                        renderbeautyCard(); // 👈 Add this here
-                                        renderTaxCard(); // 👈 Add this here
-                                        renderShoppingCard(); // 👈 Add this here
-                                        renderPPFCard(); // 👈 Add this here
-                                    }
-
-                                    Papa.parse(sheetURL, 
-                                    {
-                                        download: true,
-                                        header: true,
-                                        complete: function (results)
-                                        {
-                                            results.data.forEach(row => 
-                                            {
-                                                const topic = row["Topics"]?.trim().toLowerCase();
-                                                if (!topic) return;
-                                                dataMap[topic] = {};
-                                                months.forEach(month => {dataMap[topic][month] = parseFloat((row[month] || "0").replace(/,/g, '')) || 0;});
-                                            });
-                                            // Render all cards after data is loaded
-                                            renderAllCards();
-                                        }
-                                    });
-
-                                    // Listen to filters
-                                    const monthFilter = document.getElementById("monthFilter");
-                                    if (monthFilter) {
-                                    monthFilter.addEventListener("change", renderAllCards);
-                                    }                        
-                                </script>
 
                         
                                 <!-- Food Total Widget -->
@@ -1223,6 +1002,372 @@
                                     </script>
                                 </div>
                                 <!-- End recharge Section -->
+
+                                <style>
+                                    .card {
+                                    transition: all 0.3s ease-in-out;
+                                    cursor: pointer;
+                                    position: relative;
+                                    top: 0;
+                                    }
+
+                                    .card:hover {
+                                    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+                                    top: -3px;
+                                    z-index: 2;
+                                    }
+
+                                    /* For expense category cards */
+                                    .card[data-topic] {
+                                    border-left: 3px solid transparent;
+                                    transition: 
+                                        transform 0.25s ease,
+                                        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                                        border-color 0.3s ease;
+                                    }
+
+                                    .card[data-topic]:hover {
+                                    transform: translateY(-4px);
+                                    border-left-color: var(--category-color);
+                                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                                    }
+
+                                    /* Add specific colors for categories */
+                                    .card[data-topic="rent"] { --category-color: #4a90e2; }
+                                    .card[data-topic="grocery"] { --category-color: #7ed321; }
+                                    .card[data-topic="cab"] { --category-color: #f5a623; }
+
+                                    /* For total spend widgets */
+                                    .card.flex-row {
+                                    transition: background 0.3s ease;
+                                    background: #f8f9fa;
+                                    }
+
+                                    .card.flex-row:hover {
+                                    background: white;
+                                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                                    }
+
+                                    .card.flex-row:hover .icon-lg {
+                                    transform: scale(1.1);
+                                    }
+
+                                    .card.flex-row .icon-lg {
+                                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                                    }
+
+                                    .card:hover {
+                                    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+                                    }
+
+                                    .card {
+                                    transition: transform 0.3s ease;
+                                    }
+                                    .card:hover {
+                                    transform: perspective(1000px) translateZ(20px);
+                                    }
+
+                                    .card:hover {
+                                    border: 1px solid rgba(74, 144, 226, 0.3);
+                                    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
+                                    }
+
+                                </style>
+                            
+                                <script>
+                                    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=1215517545&single=true&output=csv";
+                                    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                                    const dataMap = {};
+
+                                    function renderCard(topic) 
+                                    {
+                                        const topicKey = topic.toLowerCase();
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        const dataPoints = selectedMonth === "all"
+                                            ? months.map(m => values[m] || 0)
+                                            : [values[selectedMonth] || 0];
+                                        const chartLabels = selectedMonth === "all" ? months : [selectedMonth];
+
+                                        const total = dataPoints.reduce((a, b) => a + b, 0).toFixed(2);
+
+                                        // Find last non-zero value and its month
+                                    let latestIdx = -1;
+                                        for (let i = dataPoints.length - 1; i >= 0; i--) {
+                                        const val = values[chartLabels[i]];
+                                        if (val !== "" && val != null && !isNaN(val) && parseFloat(val) !== 0) {
+                                            latestIdx = i;
+                                            break;
+                                        }
+                                        }
+
+                                        const latest = latestIdx >= 0 ? dataPoints[latestIdx] : 0;
+                                        const latestMonth = latestIdx >= 0 ? chartLabels[latestIdx] : "N/A";
+                                        const prev = latestIdx > 0 ? dataPoints[latestIdx - 1] : 0;
+
+                                        const diff = (latest - prev).toFixed(2);
+                                        const pct = prev !== 0 ? ((diff / prev) * 100).toFixed(2) : 0;
+
+                                        // Update values in UI
+                                        document.getElementById(`${topicKey}-total-value`).innerText = `₹${total}`;
+                                        document.getElementById(`${topicKey}-monthly-change`).innerHTML =
+                                        `₹${latest.toFixed(2)} <span class="text-${pct >= 0 ? 'success' : 'danger'} mx-1">${pct >= 0 ? '+' : ''}${pct}%</span> ${latestMonth}`;
+
+
+                                        new Chartist.Line(`#${topicKey}-chart`, {
+                                            labels: chartLabels,
+                                            series: [dataPoints]
+                                        }, {
+                                            showPoint: true,
+                                            showArea: false,
+                                            lineSmooth: false,
+                                            axisX: { showGrid: false, showLabel: true },
+                                            axisY: { onlyInteger: true },
+                                            chartPadding: { top: 10, right: 20, bottom: 10, left: 10 },
+                                            plugins: [Chartist.plugins.tooltip()]
+                                        });
+                                    }
+
+
+                                    const foodTopics = ["lunch", "dinner", "burger", "pizza","chowmein/momo/coffee"]; // add more later
+                                    function calculateFoodTotal(dataMap, selectedMonth = "all") 
+                                    {
+                                        let total = 0;
+                                        foodTopics.forEach(topic => 
+                                        {
+                                            const values = dataMap[topic] || {};
+                                            if (selectedMonth === "all") 
+                                            {
+                                                months.forEach(month => {
+                                                total += values[month] || 0;
+                                                });
+                                            } else {
+                                                total += values[selectedMonth] || 0;
+                                            }
+                                        });
+                                        return total.toFixed(2);
+                                    }
+
+                                    
+                                    function renderTravelCard() 
+                                    {
+                                        const topicKey = "travel";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let travelTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                travelTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            travelTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const travelValueElem = document.getElementById("travel-total");
+                                        if (travelValueElem) {
+                                            travelValueElem.innerText = `₹${travelTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+
+                                    function renderGiftCard() 
+                                    {
+                                        const topicKey = "gift";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let giftTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                giftTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            giftTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const giftValueElem = document.getElementById("gift-total");
+                                        if (giftValueElem) {
+                                            giftValueElem.innerText = `₹${giftTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderElectricityCard() 
+                                    {
+                                        const topicKey = "electricity";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let electricityTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                electricityTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            electricityTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const electricityValueElem = document.getElementById("electricity-total");
+                                        if (electricityValueElem) {
+                                            electricityValueElem.innerText = `₹${electricityTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderInvestmentsCard() 
+                                    {
+                                        const topicKey = "investments";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let investmentsTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                investmentsTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            investmentsTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const investmentsValueElem = document.getElementById("investments-total");
+                                        if (investmentsValueElem) {
+                                            investmentsValueElem.innerText = `₹${investmentsTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderbeautyCard() 
+                                    {
+                                        const topicKey = "beauty";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let beautyTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                beautyTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            beautyTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const beautyValueElem = document.getElementById("beauty-total");
+                                        if (beautyValueElem) {
+                                            beautyValueElem.innerText = `₹${beautyTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderTaxCard() 
+                                    {
+                                        const topicKey = "tax";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let taxTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                taxTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            taxTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const taxValueElem = document.getElementById("tax-total");
+                                        if (taxValueElem) {
+                                            taxValueElem.innerText = `₹${taxTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderShoppingCard() 
+                                    {
+                                        const topicKey = "shopping";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let shoppingTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                shoppingTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            shoppingTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const shoppingValueElem = document.getElementById("shopping-total");
+                                        if (shoppingValueElem) {
+                                            shoppingValueElem.innerText = `₹${shoppingTotal.toFixed(2)}`;
+                                        }
+                                    }
+
+                                    function renderPPFCard() 
+                                    {
+                                        const topicKey = "ppf";
+                                        const values = dataMap[topicKey] || {};
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+
+                                        let ppfTotal = 0;
+                                        if (selectedMonth === "all") {
+                                            months.forEach(month => {
+                                                ppfTotal += values[month] || 0;
+                                            });
+                                        } else {
+                                            ppfTotal = values[selectedMonth] || 0;
+                                        }
+
+                                        const ppfValueElem = document.getElementById("ppf-total");
+                                        if (ppfValueElem) {
+                                            ppfValueElem.innerText = `₹${ppfTotal.toFixed(2)}`;
+                                        }
+                                    }
+                               
+                                    // Render all cards
+                                    function renderAllCards() 
+                                    {
+                                        document.querySelectorAll('[data-topic]').forEach(card => {
+                                        const topic = card.getAttribute("data-topic");
+                                        renderCard(topic);
+                                        });
+
+                                        const selectedMonth = document.getElementById("monthFilter")?.value || "all";
+                                        const totalFoodSpend = calculateFoodTotal(dataMap, selectedMonth);
+                                        const foodElem = document.getElementById("food-total");
+                                        if (foodElem) {
+                                        foodElem.innerText = `₹${totalFoodSpend}`;
+                                        }
+
+                                        renderTravelCard(); // 👈 Add this here
+                                        renderGiftCard(); // 👈 Add this here
+                                        renderElectricityCard(); // 👈 Add this here
+                                        renderInvestmentsCard(); // 👈 Add this here
+                                        renderbeautyCard(); // 👈 Add this here
+                                        renderTaxCard(); // 👈 Add this here
+                                        renderShoppingCard(); // 👈 Add this here
+                                        renderPPFCard(); // 👈 Add this here
+                                    }
+
+                                    Papa.parse(sheetURL, 
+                                    {
+                                        download: true,
+                                        header: true,
+                                        complete: function (results)
+                                        {
+                                            results.data.forEach(row => 
+                                            {
+                                                const topic = row["Topics"]?.trim().toLowerCase();
+                                                if (!topic) return;
+                                                dataMap[topic] = {};
+                                                months.forEach(month => {dataMap[topic][month] = parseFloat((row[month] || "0").replace(/,/g, '')) || 0;});
+                                            });
+                                            // Render all cards after data is loaded
+                                            renderAllCards();
+                                        }
+                                    });
+
+                                    // Listen to filters
+                                    const monthFilter = document.getElementById("monthFilter");
+                                    if (monthFilter) {
+                                    monthFilter.addEventListener("change", renderAllCards);
+                                    }                        
+                                </script>
 
                             </div>
                             <!-- End Row -->    
