@@ -217,6 +217,22 @@
                             }
                             }
 
+                            /* append to your sidebar <style> block */
+                            .side-nav-menu-link.active,
+                            .side-nav-menu-link[aria-current="page"] {
+                                background: rgba(74,144,226,0.12);
+                                color: #2c3e50;
+                                box-shadow: inset 4px 0 0 var(--nav-color, #4a90e2);
+                            }
+                            .side-nav-menu-link.active .gd-dashboard,
+                            .side-nav-menu-link[aria-current="page"] .gd-dashboard {
+                                color: var(--nav-color, #4a90e2);
+                                transform: scale(1.05);
+                            }
+                            .side-nav-menu-link.active { transform: none; } /* avoid hover translate on selected */
+                            #sideNav .sidebar-heading { pointer-events: none; }
+
+
                         </style>
                     </div>                
                     <!-- End Sidebar Nav -->
@@ -553,7 +569,7 @@
                                         axisY: { onlyInteger: true },
                                         plugins: [Chartist.plugins.tooltip()]
                                     });
-                                }
+                                } 
 
                                 function initDashboard(data, selectedYear, allowedFunds, tabsId, contentId) 
                                 {
@@ -692,6 +708,39 @@
                 </div>    
             </div>
         </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            const links = Array.from(document.querySelectorAll('#sideNav .side-nav-menu-link'));
+            if (!links.length) return;
+            currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+            function markActiveByHref(target) 
+            {
+                links.forEach(a => {
+                const href = (a.getAttribute('href') || '').split('/').pop().toLowerCase();
+                if (!href) { a.classList.remove('active'); a.removeAttribute('aria-current'); return; }
+                if (href === target) {
+                    a.classList.add('active');
+                    a.setAttribute('aria-current', 'page');
+                } else {
+                    a.classList.remove('active');
+                    a.removeAttribute('aria-current');
+                }
+                });
+            }
+
+            // initial mark based on URL
+            markActiveByHref(currentFile);
+
+            // update on click (for immediate feedback before navigation)
+            links.forEach(a => a.addEventListener('click', function() {
+            markActiveByHref((a.getAttribute('href')||'').split('/').pop().toLowerCase());
+            }) );
+            });
+        </script>
+
+
     </body>
 
 </html>

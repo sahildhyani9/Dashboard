@@ -61,9 +61,10 @@
                         </div>
                     </div>
                     <!-- End Filters -->                                
-                </div>
-            
-                <style>
+                </div>            
+            </nav>
+
+             <style>
                     .filters {
                     display: flex;
                     justify-content: flex-start;
@@ -97,8 +98,7 @@
                     border-color: #007bff;
                     box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
                     }                
-                </style>
-            </nav>
+            </style>
         </header>
         <!-- End Header -->
 
@@ -229,6 +229,21 @@
                                 .gd-dashboard { color: var(--nav-color); }
                             }
                             }
+
+                            /* append to your sidebar <style> block */
+                            .side-nav-menu-link.active,
+                            .side-nav-menu-link[aria-current="page"] {
+                                background: rgba(74,144,226,0.12);
+                                color: #2c3e50;
+                                box-shadow: inset 4px 0 0 var(--nav-color, #4a90e2);
+                            }
+                            .side-nav-menu-link.active .gd-dashboard,
+                            .side-nav-menu-link[aria-current="page"] .gd-dashboard {
+                                color: var(--nav-color, #4a90e2);
+                                transform: scale(1.05);
+                            }
+                            .side-nav-menu-link.active { transform: none; } /* avoid hover translate on selected */
+                            #sideNav .sidebar-heading { pointer-events: none; }
 
                         </style>
                     </div>                
@@ -883,6 +898,21 @@
                                 </div>
                                 <!-- Outside Dinner Total Widget -->
 
+                                <!-- Emergency Fund Widget -->    
+                                <div class="col-md-6 col-xl-4 mb-3 mb-xl-4">                        
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-secondary rounded-circle mr-3">
+                                            <i class="gd-wallet icon-text d-inline-block text-secondary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="emergency-total">₹0.00</h4>
+                                            <h6 class="mb-0">Total Emergency Fund</h6>
+                                        </div>
+                                        <i class="gd-arrow-down icon-text d-flex text-danger ml-auto"></i>
+                                    </div>                        
+                                </div>
+                                <!-- Emergency Fund Widget -->
+
                                 <style>
                                     .card {
                                     transition: all 0.3s ease-in-out;
@@ -959,12 +989,12 @@
                                     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                                     const dataMap = {};
 
-                                    function renderCard(topic) 
-                                    {
+                                    function renderCard(topic) {
                                         const topicKey = topic.toLowerCase();
                                         const values = dataMap[topicKey] || {};
                                         const selectedMonth = document.getElementById("monthFilter")?.value || "all";
 
+                                        // dataPoints used for chart and calculations
                                         const dataPoints = selectedMonth === "all"
                                             ? months.map(m => values[m] || 0)
                                             : [values[selectedMonth] || 0];
@@ -972,29 +1002,31 @@
 
                                         const total = dataPoints.reduce((a, b) => a + b, 0).toFixed(2);
 
-                                        // Find last non-zero value and its month
-                                    let latestIdx = -1;
-                                        for (let i = dataPoints.length - 1; i >= 0; i--) {
-                                        const val = values[chartLabels[i]];
-                                        if (val !== "" && val != null && !isNaN(val) && parseFloat(val) !== 0) {
-                                            latestIdx = i;
-                                            break;
+                                        // Use provided logic: overall average, latest non-zero, percent vs average
+                                        const allPoints = dataPoints.slice(); // copy
+                                        const overallAvg = allPoints.length ? (allPoints.reduce((a, b) => a + b, 0) / allPoints.length) : 0;
+                                        const displayAvg = Math.round(overallAvg);
+
+                                        // find latest non-zero value
+                                        let latestNonZero = 0;
+                                        for (let i = allPoints.length - 1; i >= 0; i--) {
+                                            if (allPoints[i] > 0) { latestNonZero = allPoints[i]; break; }
                                         }
+
+                                        const pctChangeNum = overallAvg !== 0 ? ((latestNonZero - overallAvg) / overallAvg * 100) : 0;
+                                        const pctChangeStr = (pctChangeNum > 0 ? '+' : '') + pctChangeNum.toFixed(2) + '%';
+
+                                        // Update UI
+                                        const totalElem = document.getElementById(`${topicKey}-total-value`);
+                                        if (totalElem) totalElem.innerText = `₹${total}`;
+
+                                        const changeElem = document.getElementById(`${topicKey}-monthly-change`);
+                                        if (changeElem) {
+                                            changeElem.innerHTML =
+                                                `Avg ₹${displayAvg} <span class="text-${pctChangeNum >= 0 ? 'success' : 'danger'} mx-1">${pctChangeStr}</span>`;
                                         }
 
-                                        const latest = latestIdx >= 0 ? dataPoints[latestIdx] : 0;
-                                        const latestMonth = latestIdx >= 0 ? chartLabels[latestIdx] : "N/A";
-                                        const prev = latestIdx > 0 ? dataPoints[latestIdx - 1] : 0;
-
-                                        const diff = (latest - prev).toFixed(2);
-                                        const pct = prev !== 0 ? ((diff / prev) * 100).toFixed(2) : 0;
-
-                                        // Update values in UI
-                                        document.getElementById(`${topicKey}-total-value`).innerText = `₹${total}`;
-                                        document.getElementById(`${topicKey}-monthly-change`).innerHTML =
-                                        `₹${latest.toFixed(2)} <span class="text-${pct >= 0 ? 'success' : 'danger'} mx-1">${pct >= 0 ? '+' : ''}${pct}%</span> ${latestMonth}`;
-
-
+                                        // Chart (unchanged)
                                         new Chartist.Line(`#${topicKey}-chart`, {
                                             labels: chartLabels,
                                             series: [dataPoints]
@@ -1115,24 +1147,24 @@
                                         }
                                     }
 
-                                    function renderCarCard() 
+                                    function renderEmergencyCard() 
                                     {
-                                        const topicKey = "car";
+                                        const topicKey = "emergency";
                                         const values = dataMap[topicKey] || {};
                                         const selectedMonth = document.getElementById("monthFilter")?.value || "all";
 
-                                        let carTotal = 0;
+                                        let emergencyTotal = 0;
                                         if (selectedMonth === "all") {
                                             months.forEach(month => {
-                                                carTotal += values[month] || 0;
+                                                emergencyTotal += values[month] || 0;
                                             });
                                         } else {
-                                            carTotal = values[selectedMonth] || 0;
+                                            emergencyTotal = values[selectedMonth] || 0;
                                         }
 
-                                        const carValueElem = document.getElementById("car-total");
-                                        if (carValueElem) {
-                                            carValueElem.innerText = `₹${carTotal.toFixed(2)}`;
+                                        const emergencyValueElem = document.getElementById("emergency-total");
+                                        if (emergencyValueElem) {
+                                            emergencyValueElem.innerText = `₹${emergencyTotal.toFixed(2)}`;
                                         }
                                     }
 
@@ -1156,6 +1188,7 @@
                                         renderGiftCard(); // 👈 Add this here
                                         renderDinnerCard(); // 👈 Add this here
                                         renderOutsideDinnerCard(); // 👈 Add this here
+                                        renderEmergencyCard(); // 👈 Add this here
                                     }
 
 
@@ -1178,7 +1211,6 @@
                                     });
 
 
-
                                     // Listen to filters
                                     const monthFilter = document.getElementById("monthFilter");
                                     if (monthFilter) {
@@ -1194,6 +1226,37 @@
             </div>
             <!-- End Main Content -->
         </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            const links = Array.from(document.querySelectorAll('#sideNav .side-nav-menu-link'));
+            if (!links.length) return;
+            currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+            function markActiveByHref(target) 
+            {
+                links.forEach(a => {
+                const href = (a.getAttribute('href') || '').split('/').pop().toLowerCase();
+                if (!href) { a.classList.remove('active'); a.removeAttribute('aria-current'); return; }
+                if (href === target) {
+                    a.classList.add('active');
+                    a.setAttribute('aria-current', 'page');
+                } else {
+                    a.classList.remove('active');
+                    a.removeAttribute('aria-current');
+                }
+                });
+            }
+
+            // initial mark based on URL
+            markActiveByHref(currentFile);
+
+            // update on click (for immediate feedback before navigation)
+            links.forEach(a => a.addEventListener('click', function() {
+            markActiveByHref((a.getAttribute('href')||'').split('/').pop().toLowerCase());
+            }) );
+            });
+        </script>
     </body>
 
 </html>

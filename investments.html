@@ -29,6 +29,11 @@
         <!-- PapaParse -->
         <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+        <!-- jQuery & Bootstrap (must load before your script) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
     </head>
 
     <body class="has-sidebar has-fixed-sidebar-and-header">
@@ -217,6 +222,21 @@
                             }
                             }
 
+                            /* append to your sidebar <style> block */
+                            .side-nav-menu-link.active,
+                            .side-nav-menu-link[aria-current="page"] {
+                                background: rgba(74,144,226,0.12);
+                                color: #2c3e50;
+                                box-shadow: inset 4px 0 0 var(--nav-color, #4a90e2);
+                            }
+                            .side-nav-menu-link.active .gd-dashboard,
+                            .side-nav-menu-link[aria-current="page"] .gd-dashboard {
+                                color: var(--nav-color, #4a90e2);
+                                transform: scale(1.05);
+                            }
+                            .side-nav-menu-link.active { transform: none; } /* avoid hover translate on selected */
+                            #sideNav .sidebar-heading { pointer-events: none; }
+
                         </style>
                     </div>                
                     <!-- End Sidebar Nav -->
@@ -299,8 +319,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
+                            </div>                     
+                                                        
                             <!-- Mutual Funds Tab Section -->
                             <div class="row">
                                 <div class="col-12">
@@ -338,6 +358,84 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- === SECOND DATASET SUMMARY (from Sheet 2) === -->
+
+                            <!-- Global Summary - Sheet 2 -->
+                            <div class="row mt-5">
+                                <div class="col-md-4 mb-3 mb-xl-4">
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-primary rounded-circle mr-3">
+                                            <i class="gd-bar-chart icon-text d-inline-block text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="summary2-invested">₹0.00</h4>
+                                            <h6 class="mb-0">Total Investments (Set 2)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-xl-4">
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-secondary rounded-circle mr-3">
+                                            <i class="gd-wallet icon-text d-inline-block text-secondary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="summary2-corpus">₹0.00</h4>
+                                            <h6 class="mb-0">Total Corpus (Set 2)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-xl-4">
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-success rounded-circle mr-3">
+                                            <i class="gd-money icon-text d-inline-block text-success"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="summary2-profit">0.00%</h4>
+                                            <h6 class="mb-0">Net Profit (%) (Set 2)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <!-- MF Only Summary - Sheet 2 -->
+                            <div class="row mt-3">
+                                <div class="col-md-4 mb-3 mb-xl-4">
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-primary rounded-circle mr-3">
+                                            <i class="gd-bar-chart icon-text d-inline-block text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="mf-summary2-invested">₹0.00</h4>
+                                            <h6 class="mb-0">MF Total Investments (Set 2)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-xl-4">
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-secondary rounded-circle mr-3">
+                                            <i class="gd-wallet icon-text d-inline-block text-secondary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="mf-summary2-corpus">₹0.00</h4>
+                                            <h6 class="mb-0">MF Total Corpus (Set 2)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-xl-4">
+                                    <div class="card flex-row align-items-center p-3 p-md-4">
+                                        <div class="icon icon-lg bg-soft-success rounded-circle mr-3">
+                                            <i class="gd-money icon-text d-inline-block text-success"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="lh-1 mb-1" id="mf-summary2-profit">0.00%</h4>
+                                            <h6 class="mb-0">MF Net Profit (%) (Set 2)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <!-- jQuery (required for Bootstrap tabs) -->
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -419,70 +517,61 @@
                             </style>
                     
                             <script>
-                                const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=1928756849&single=true&output=csv";
+                                // === CONFIG: UPDATE THESE TWO URLs ===
+                                const csvUrl1 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=1928756849&single=true&output=csv";
+                                const csvUrl2 = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRrmX-VEuiywJZwt1Ylfoit1kdHtEhsVz13DeoVFX_X8JIXY8cMUAeVawKW5ulVTq40QMFxZVOS2Ui7/pub?gid=10346569&single=true&output=csv"; // CHANGE THIS
 
-                                // Define your two sets of funds
-                                const allowedFunds1 = [
-                                "MF 2 - Axis Focused",
-                                "MF 3 - Canara Robeco S",
-                                "MF 4 - Axis Bluechip S",
-                                "MF 5 - Nippon"
-                                ];
-                                const allowedFunds2 = [
-                                "MF 6 - SBI",
-                                "PPF",
-                                "ELSS",
-                                "NPS"                        
-                                ];
-                                const allowedFunds3 = [
-                                "Shares"                                               
-                                ];
+                                let rawData1 = [];
+                                let rawData2 = [];
+
+                                // Fund groups
+                                const allowedFunds1 = ["MF 2 - Axis Focused", "MF 3 - Canara Robeco S", "MF 4 - Axis Bluechip S", "MF 5 - Nippon"];
+                                const allowedFunds2 = ["MF 6 - SBI", "PPF", "ELSS", "NPS"];
+                                const allowedFunds3 = ["Shares"];
 
                                 function slugify(text) {
                                 return text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
                                 }
 
-                                function renderTab(name, index, tabsId) 
-                                {
+                                function renderTab(name, index, tabsId, xirr = null) {
                                     const tabId = slugify(name) + "-" + tabsId;
                                     const activeClass = index === 0 ? 'active' : '';
+                                    const xirrText = xirr != null ? `${xirr.toFixed(2)}%` : '–';
                                     const tabHTML = `
                                     <li class="nav-item border-bottom border-xl-bottom-0 ${index !== 0 ? 'border-xl-left' : ''}">
-                                        <a class="nav-link d-flex align-items-center py-2 px-3 p-xl-4 ${activeClass}" href="#${tabId}" role="tab" data-toggle="tab">
+                                        <a class="nav-link d-flex align-items-center py-2 px-3 p-xl-4 ${activeClass}" 
+                                        href="#${tabId}" role="tab" data-toggle="tab">
                                             <span>${name}</span>
-                                            <small id="${tabId}-total" class="text-muted ml-auto">Loading...</small>
+                                            <small id="${tabId}-total" class="text-muted ml-auto">${xirrText}</small>
                                         </a>
                                     </li>`;
                                     document.getElementById(tabsId).insertAdjacentHTML("beforeend", tabHTML);
                                 }
 
-                                function renderTabContent(name, index, contentId, tabsId) 
-                                {
+                                function renderTabContent(name, index, contentId, tabsId) {
                                     const tabId = slugify(name) + "-" + tabsId;
                                     const activeClass = index === 0 ? "show active" : "";
                                     const tabContentHTML = `
                                         <div class="tab-pane fade ${activeClass}" id="${tabId}" role="tabpanel">
-                                        <div class="row text-center">
-                                            <div class="col-6 col-md-4 mb-3 mb-md-0">
-                                            <div class="h3 mb-0" id="${tabId}-invested">₹0.00</div>
-                                            <small class="text-muted">Total Investment</small>
+                                            <div class="row text-center py-4">
+                                                <div class="col-6 col-md-4 mb-3 mb-md-0">
+                                                    <div class="h3 mb-0" id="${tabId}-invested">₹0.00</div>
+                                                    <small class="text-muted">Total Investment</small>
+                                                </div>
+                                                <div class="col-6 col-md-4 mb-3 mb-md-0 border-left">
+                                                    <div class="h3 mb-0" id="${tabId}-corpus">₹0.00</div>
+                                                    <small class="text-muted">Total Corpus</small>
+                                                </div>
+                                                <div class="col-12 col-md-4 border-left">
+                                                    <div class="h3 mb-0" id="${tabId}-profit">0.00%</div>
+                                                    <small class="text-muted">Net Profit (%)</small>
+                                                </div>
                                             </div>
-                                            <div class="col-6 col-md-4 mb-3 mb-md-0 border-left">
-                                            <div class="h3 mb-0" id="${tabId}-corpus">₹0.00</div>
-                                            <small class="text-muted">Total Corpus</small>
-                                            </div>
-                                            <div class="col-12 col-md-4 border-left">
-                                            <div class="h3 mb-0" id="${tabId}-profit">0.00%</div>
-                                            <small class="text-muted">Net Profit (%)</small>
-                                            </div>
-                                        </div>
-                                        <div id="${tabId}-chart" class="ct-chart position-relative mt-4" style="height: 250px;"></div>
                                         </div>`;
                                     document.getElementById(contentId).insertAdjacentHTML("beforeend", tabContentHTML);
                                 }
 
-                                function renderChart(tabId, labels, values) 
-                                {
+                                function renderChart(tabId, labels, values) {
                                     new Chartist.Line(`#${tabId}-chart`, {
                                         labels,
                                         series: [values]
@@ -498,8 +587,7 @@
                                     });
                                 }
 
-                                function initDashboard(data, selectedYear, allowedFunds, tabsId, contentId) 
-                                {
+                                function initDashboard(data, selectedYear, allowedFunds, tabsId, contentId) {
                                     const tabsContainer = document.getElementById(tabsId);
                                     const contentContainer = document.getElementById(contentId);
                                     tabsContainer.innerHTML = "";
@@ -512,121 +600,179 @@
                                     filtered.forEach((row, index) => {
                                         const fund = row["Type"].trim();
                                         const tabId = slugify(fund) + "-" + tabsId;
+
                                         const investment = parseFloat((row["Investment"] || "0").replace(/,/g, "")) || 0;
                                         const corpus = parseFloat((row["Return"] || "0").replace(/,/g, "")) || 0;
+                                        const xirr = parseFloat(row["XIRR"] || "0") || null;
+
                                         if (!investment && !corpus) return;
 
-                                        renderTab(fund, index, tabsId);
+                                        renderTab(fund, index, tabsId, xirr);
                                         renderTabContent(fund, index, contentId, tabsId);
 
                                         const profit = investment ? ((corpus - investment) / investment) * 100 : 0;
 
-                                        document.getElementById(`${tabId}-total`).textContent = `₹${investment.toFixed(2)}`;
+                                        if (xirr != null) {
+                                            document.getElementById(`${tabId}-total`).textContent = `${xirr.toFixed(2)}%`;
+                                        }
+
                                         document.getElementById(`${tabId}-invested`).textContent = `₹${investment.toFixed(2)}`;
                                         document.getElementById(`${tabId}-corpus`).textContent = `₹${corpus.toFixed(2)}`;
                                         document.getElementById(`${tabId}-profit`).textContent = `${profit.toFixed(2)}%`;
 
-                                        const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"];
+                                        const labels = ["Jan","Feb","Mar","Apr","May","Jun","Jul"];
                                         const values = labels.map((_, i) => investment + ((corpus - investment) * i / (labels.length - 1)));
 
-                                        // Always render chart when tab is shown
                                         $(`a[href="#${tabId}"]`).on("shown.bs.tab", () => {
-                                    document.getElementById(`${tabId}-chart`).innerHTML = "";
-                                    setTimeout(() => renderChart(tabId, labels, values), 10);
-                                    });
+                                            document.getElementById(`${tabId}-chart`).innerHTML = "";
+                                            setTimeout(() => renderChart(tabId, labels, values), 10);
+                                        });
 
-                                        // Render chart for the first tab immediately
                                         if (index === 0) {
-                                        setTimeout(() => {
-                                            renderChart(tabId, labels, values);
-                                        }, 0);
+                                            setTimeout(() => renderChart(tabId, labels, values), 0);
                                         }
                                     });
                                 }
 
-                                function renderSummary(data, selectedYear) 
-                                {
-                                    // Filter for the selected year
+                                function renderSummary(data, selectedYear) {
                                     const filtered = data.filter(row => row["Year"]?.trim() === selectedYear);
-
                                     let totalInvestment = 0;
                                     let totalCorpus = 0;
-
                                     filtered.forEach(row => {
                                         totalInvestment += parseFloat((row["Investment"] || "0").replace(/,/g, "")) || 0;
                                         totalCorpus += parseFloat((row["Return"] || "0").replace(/,/g, "")) || 0;
                                     });
-
                                     const profit = totalInvestment ? ((totalCorpus - totalInvestment) / totalInvestment) * 100 : 0;
-
                                     document.getElementById("summary-invested").textContent = `₹${totalInvestment.toFixed(2)}`;
                                     document.getElementById("summary-corpus").textContent = `₹${totalCorpus.toFixed(2)}`;
                                     document.getElementById("summary-profit").textContent = `${profit.toFixed(2)}%`;
                                 }
-                                            
-                                function renderMfSummary(data, selectedYear) 
-                                {
-                                    const mutualFunds = [
-                                    "MF 2 - Axis Focused",
-                                    "MF 3 - Canara Robeco S",
-                                    "MF 4 - Axis Bluechip S",
-                                    "MF 5 - Nippon",
-                                    "MF 6 - SBI"
-                                    ];
 
-                                    const filtered = data.filter(row => 
-                                    row["Year"]?.trim() === selectedYear && mutualFunds.includes(row["Type"]?.trim())
-                                    );
-
+                                function renderMfSummary(data, selectedYear) {
+                                    const mutualFunds = ["MF 2 - Axis Focused","MF 3 - Canara Robeco S","MF 4 - Axis Bluechip S","MF 5 - Nippon","MF 6 - SBI"];
+                                    const filtered = data.filter(row => row["Year"]?.trim() === selectedYear && mutualFunds.includes(row["Type"]?.trim()));
                                     let totalInvestment = 0;
                                     let totalCorpus = 0;
-
                                     filtered.forEach(row => {
                                         totalInvestment += parseFloat((row["Investment"] || "0").replace(/,/g, "")) || 0;
                                         totalCorpus += parseFloat((row["Return"] || "0").replace(/,/g, "")) || 0;
                                     });
-
                                     const profit = totalInvestment ? ((totalCorpus - totalInvestment) / totalInvestment) * 100 : 0;
-
                                     document.getElementById("mf-summary-invested").textContent = `₹${totalInvestment.toFixed(2)}`;
                                     document.getElementById("mf-summary-corpus").textContent = `₹${totalCorpus.toFixed(2)}`;
                                     document.getElementById("mf-summary-profit").textContent = `${profit.toFixed(2)}%`;
                                 }
-                                                            
-                                // Call renderSummary after dashboards are initialized
-                                function updateAllDashboardsAndSummary(data, selectedYear) 
-                                {
-                                    initDashboard(data, selectedYear, allowedFunds1, "mfTabs1", "mfContent1");
-                                    initDashboard(data, selectedYear, allowedFunds2, "mfTabs2", "mfContent2");
-                                    initDashboard(data, selectedYear, allowedFunds3, "mfTabs3", "mfContent3");
-                                    renderSummary(data, selectedYear);
-                                    renderMfSummary(data, selectedYear);
+
+                                function renderSummary2(data, selectedYear) {
+                                    const filtered = data.filter(row => row["Year"]?.trim() === selectedYear);
+                                    let totalInvestment = 0;
+                                    let totalCorpus = 0;
+                                    filtered.forEach(row => {
+                                        totalInvestment += parseFloat((row["Investment"] || "0").replace(/,/g, "")) || 0;
+                                        totalCorpus += parseFloat((row["Return"] || "0").replace(/,/g, "")) || 0;
+                                    });
+                                    const profit = totalInvestment ? ((totalCorpus - totalInvestment) / totalInvestment) * 100 : 0;
+                                    document.getElementById("summary2-invested").textContent = `₹${totalInvestment.toFixed(2)}`;
+                                    document.getElementById("summary2-corpus").textContent = `₹${totalCorpus.toFixed(2)}`;
+                                    document.getElementById("summary2-profit").textContent = `${profit.toFixed(2)}%`;
                                 }
 
-                                // Update your Papa.parse and yearFilter event:
-                                Papa.parse
-                                (csvUrl, {
+                                function renderMfSummary2(data, selectedYear) {
+                                    const mutualFunds = ["MF 2 - Axis Focused","MF 3 - Canara Robeco S","MF 4 - Axis Bluechip S","MF 5 - Nippon","MF 6 - SBI"];
+                                    const filtered = data.filter(row => row["Year"]?.trim() === selectedYear && mutualFunds.includes(row["Type"]?.trim()));
+                                    let totalInvestment = 0;
+                                    let totalCorpus = 0;
+                                    filtered.forEach(row => {
+                                        totalInvestment += parseFloat((row["Investment"] || "0").replace(/,/g, "")) || 0;
+                                        totalCorpus += parseFloat((row["Return"] || "0").replace(/,/g, "")) || 0;
+                                    });
+                                    const profit = totalInvestment ? ((totalCorpus - totalInvestment) / totalInvestment) * 100 : 0;
+                                    document.getElementById("mf-summary2-invested").textContent = `₹${totalInvestment.toFixed(2)}`;
+                                    document.getElementById("mf-summary2-corpus").textContent = `₹${totalCorpus.toFixed(2)}`;
+                                    document.getElementById("mf-summary2-profit").textContent = `${profit.toFixed(2)}%`;
+                                }
+
+                                function updateAllDashboardsAndSummary(data1, data2, selectedYear) {
+                                    initDashboard(data1, selectedYear, allowedFunds1, "mfTabs1", "mfContent1");
+                                    initDashboard(data1, selectedYear, allowedFunds2, "mfTabs2", "mfContent2");
+                                    initDashboard(data1, selectedYear, allowedFunds3, "mfTabs3", "mfContent3");
+                                    renderSummary(data1, selectedYear);
+                                    renderMfSummary(data1, selectedYear);
+                                    renderSummary2(data2, selectedYear);
+                                    renderMfSummary2(data2, selectedYear);
+                                }
+
+                                // === LOAD BOTH SHEETS ===
+                                Papa.parse(csvUrl1, {
                                     download: true,
                                     header: true,
                                     complete: function(results) {
-                                        rawData = results.data;
-                                        const defaultYear = document.getElementById("yearFilter").value;
-                                        updateAllDashboardsAndSummary(rawData, defaultYear);
+                                        rawData1 = results.data;
+                                        loadSecondSheet();
+                                    },
+                                    error: function(err) {
+                                        console.error("Error loading Sheet 1:", err);
                                     }
                                 });
 
-                                document.getElementById("yearFilter").addEventListener("change", function() {
-                                const selectedYear = this.value;
-                                updateAllDashboardsAndSummary(rawData, selectedYear);
-                                });
+                                function loadSecondSheet() {
+                                    Papa.parse(csvUrl2, {
+                                        download: true,
+                                        header: true,
+                                        complete: function(results2) {
+                                            rawData2 = results2.data;
+                                            const defaultYear = document.getElementById("yearFilter").value;
+                                            updateAllDashboardsAndSummary(rawData1, rawData2, defaultYear);
+                                        },
+                                        error: function(err) {
+                                            console.error("Error loading Sheet 2:", err);
+                                        }
+                                    });
+                                }
 
-                            </script>  
-                
+                                // === YEAR FILTER CHANGE ===
+                                document.getElementById("yearFilter").addEventListener("change", function() {
+                                    const selectedYear = this.value;
+                                    updateAllDashboardsAndSummary(rawData1, rawData2, selectedYear);
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>    
             </div>
         </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+            const links = Array.from(document.querySelectorAll('#sideNav .side-nav-menu-link'));
+            if (!links.length) return;
+            currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+            function markActiveByHref(target) 
+            {
+                links.forEach(a => {
+                const href = (a.getAttribute('href') || '').split('/').pop().toLowerCase();
+                if (!href) { a.classList.remove('active'); a.removeAttribute('aria-current'); return; }
+                if (href === target) {
+                    a.classList.add('active');
+                    a.setAttribute('aria-current', 'page');
+                } else {
+                    a.classList.remove('active');
+                    a.removeAttribute('aria-current');
+                }
+                });
+            }
+
+            // initial mark based on URL
+            markActiveByHref(currentFile);
+
+            // update on click (for immediate feedback before navigation)
+            links.forEach(a => a.addEventListener('click', function() {
+            markActiveByHref((a.getAttribute('href')||'').split('/').pop().toLowerCase());
+            }) );
+            });
+        </script>
+
     </body>
 
 </html>
